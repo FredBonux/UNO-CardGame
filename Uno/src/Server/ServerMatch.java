@@ -1,5 +1,6 @@
 package Server;
 
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
@@ -9,13 +10,13 @@ public class ServerMatch extends Thread{
 	private Socket away = null; //Giocatore 2
 	private ObjectOutputStream homeOutStream;
 	private ObjectOutputStream awayOutStream;
-	private Mazzo mazzo = null;
+	/*private Mazzo mazzo = null;
 	private Mano manoHome = null;
-	private Mano manoAway = null;
+	private Mano manoAway = null;*/
 	
 	private boolean isRunning = true;
 	
-	public ServerMatch(Socket home, Socket away) {
+	public ServerMatch(Socket home, Socket away) throws IOException {
 		this.home = home;
 		this.away = away;
 
@@ -25,11 +26,11 @@ public class ServerMatch extends Thread{
 	
 	public void run() {
 		//Inizia la partita
-		for(int i = 0; i < 7; i++) { //Consegno 7 carte
+		/*for(int i = 0; i < 7; i++) { //Consegno 7 carte
 			Carta cHome = mazzo.pesca();
 			Carta cAway = mazzo.pesca();
 			
-		}
+		}*/
 		while(this.isRunning) {
 			
 		}
