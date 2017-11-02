@@ -1,4 +1,4 @@
-package Carta;
+package Carte;
 
 public enum Colore {
 	GIALLO,
