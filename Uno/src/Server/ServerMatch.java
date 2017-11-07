@@ -74,7 +74,7 @@ public class ServerMatch extends Thread{
 		
 	}
 
-	private boolean convalidaGiocata() throws Exception {
+	private boolean convalidaGiocata() throws  Exception {
 		this.lastGiocata = this.giocatore1.read();
 		switch (this.lastGiocata.getEvento()) {
 		case butto:
