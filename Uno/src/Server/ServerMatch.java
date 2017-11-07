@@ -47,6 +47,7 @@ public class ServerMatch extends Thread{
 				
 				//Scambio il turno
 				this.scambioGiocatori();
+				this.checkVittoria();
 			}
 		}catch (Exception e) {
 			this.isRunning = false;
@@ -78,6 +79,8 @@ public class ServerMatch extends Thread{
 		switch (this.lastGiocata.getEvento()) {
 		case butto:
 			Carta c = this.lastGiocata.getCarte().get(0);
+			
+			//TODO: manca il controllo sul tavolo
 			if(!this.giocatore1.hasCarta(c)) return false;
 			else return true;
 		case pesco:
@@ -125,5 +128,15 @@ public class ServerMatch extends Thread{
 		Giocatore app = this.giocatore1;
 		this.giocatore1 = this.giocatore2;
 		this.giocatore2 = app;
+	}
+	
+	public void checkVittoria() throws Exception {
+		if(this.giocatore1.haVinto()) {
+			this.giocatore1.write(new Packet(Evento.vittoria));
+			this.giocatore2.write(new Packet(Evento.sconfitta));
+		}else if(this.giocatore2.haVinto()) {
+			this.giocatore2.write(new Packet(Evento.vittoria));
+			this.giocatore1.write(new Packet(Evento.sconfitta));
+		}
 	}
 }

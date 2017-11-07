@@ -34,6 +34,8 @@ public abstract class CTRLPacket {
 		case vittoria: //Il client ha vinto
 			this.hoVinto();
 			break;
+		case pesco:
+			this.avversarioPesca();
 		
 		default:
 			System.out.println("EVENTO NON VALIDO!");
@@ -60,6 +62,7 @@ public abstract class CTRLPacket {
 	public abstract void otherTurn();
 	public abstract void hoPerso();
 	public abstract void hoVinto();
+	public abstract void avversarioPesca();
 	
 	//Subisci
 	public abstract void subisciNormale(Carta c);

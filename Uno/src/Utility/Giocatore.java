@@ -44,4 +44,8 @@ public class Giocatore {
 	public boolean hasCarta(Carta c) {
 		return (this.mano.findCarta(c) != -1) ? true : false;
 	}
+	
+	public boolean haVinto() {
+		return (this.mano.getMano().size() <= 0) ? true : false;
+	}
 }
