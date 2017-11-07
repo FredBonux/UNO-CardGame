@@ -1,5 +1,7 @@
 package Utility;
 
+import java.util.ArrayList;
+
 import Carte.Carta;
 import Carte.TipoCarta;
 
@@ -14,6 +16,9 @@ public abstract class CTRLPacket {
 	//Funzione che richiama la funzione astratta dell'evento
 	public void callToAction() {
 		switch (this.pacchetto.getEvento()) {
+		case mano:
+			this.manoIniziale(this.pacchetto.getCarte());
+			break;
 		case turno: //E' il turno del client che riceve il pacchetto
 			this.myTurn(); 
 			break;
@@ -36,20 +41,21 @@ public abstract class CTRLPacket {
 		}
 	}
 	
-	public void callSubisci(Carta[] carte) {
+	public void callSubisci(ArrayList<Carta> carte) {
 		//Gestisci gli eventi delle tipologie delle carte
 		if(carte == null) return;
-		TipoCarta tipoSubito = carte[0].getTipoCarta();
-		if( tipoSubito == TipoCarta.Normale ) this.subisciNormale(carte[0]);
-		else if( tipoSubito == TipoCarta.Piu2 ) this.subisciPIU2(carte[0], carte[1], carte[2]);
-		else if( tipoSubito == TipoCarta.Piu4 ) this.subisciPIU4( carte[0], carte[1], carte[2], carte[3], carte[4] );
-		else if( tipoSubito == TipoCarta.CambioColore ) this.subisciCambiaColore( carte[0] );
-		else if( tipoSubito == TipoCarta.Stop ) this.subisciStop( carte[0] );
-		else if( tipoSubito == TipoCarta.CambioGiro ) this.subisciCambioGiro( carte[0] );
+		TipoCarta tipoSubito = carte.get(0).getTipoCarta();
+		if( tipoSubito == TipoCarta.Normale ) this.subisciNormale(carte.get(0));
+		else if( tipoSubito == TipoCarta.Piu2 ) this.subisciPIU2(carte.get(0), carte.get(1), carte.get(2));
+		else if( tipoSubito == TipoCarta.Piu4 ) this.subisciPIU4( carte.get(0), carte.get(1), carte.get(2), carte.get(3), carte.get(4) );
+		else if( tipoSubito == TipoCarta.CambioColore ) this.subisciCambiaColore( carte.get(0) );
+		else if( tipoSubito == TipoCarta.Stop ) this.subisciStop( carte.get(0) );
+		else if( tipoSubito == TipoCarta.CambioGiro ) this.subisciCambioGiro( carte.get(0) );
 		
 		return;
 	}
 	
+	public abstract void manoIniziale(ArrayList<Carta> carteIniziali);
 	public abstract void myTurn();
 	public abstract void otherTurn();
 	public abstract void hoPerso();

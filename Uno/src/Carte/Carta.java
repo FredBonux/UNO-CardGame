@@ -1,7 +1,9 @@
 package Carte;
 
-public class Carta {
-	private TipoCarta tipoCarta;
+import java.io.Serializable;
+
+public class Carta implements Serializable, Comparable<Carta>{
+	private final TipoCarta tipoCarta;
 	private Colore coloreCarta;
 	private int numeroCarta;
 	
@@ -43,6 +45,21 @@ public class Carta {
 	@Override
 	public String toString() {
 		return "Carta [tipoCarta=" + tipoCarta + ", coloreCarta=" + coloreCarta + ", numeroCarta=" + numeroCarta + "]";
+	}
+
+	@Override
+	public int compareTo(Carta o) {
+		if(tipoCarta != o.tipoCarta) return 1;
+		switch (tipoCarta) {
+		case Normale:
+			return (coloreCarta == o.coloreCarta && numeroCarta == o.numeroCarta) ? 0 : 1;
+		case CambioColore: case Piu4:
+			return 0;
+		case Piu2: case Stop: case CambioGiro:
+			return (coloreCarta == o.coloreCarta) ? 0 : 1;
+			
+		}
+		return 1;
 	}
 	
 	

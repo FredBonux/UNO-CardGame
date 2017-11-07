@@ -58,6 +58,14 @@ public class Mazzo {
 		return ret;
 	}
 	
+	public ArrayList<Carta> pesca(int qta) {
+		ArrayList<Carta> ret = new ArrayList<Carta>();
+		for(int i = 0; i < qta; i++) {
+			ret.add(this.pesca());
+		}
+		return ret;
+	}
+	
 	public void stampa() {
 		System.out.println("CARTE : " + mazzo.size());
 		for(int i = 0; i < mazzo.size(); i++) {

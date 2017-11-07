@@ -16,7 +16,6 @@ public class Server extends Thread{
 	}
 	
 	public void run() {
-		int cont = -1;
 		while(isRunning) {
 			try {
 				Socket home = this.serverSocket.accept(); //Si connette il primo giocatore di una partita
