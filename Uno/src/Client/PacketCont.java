@@ -138,4 +138,10 @@ public class PacketCont extends CTRLPacket{
 		
 	}
 
+	@Override
+	public void avversarioPesca() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

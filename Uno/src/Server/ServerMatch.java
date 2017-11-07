@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import Carte.Carta;
 import Carte.Mazzo;
+import Carte.Tavolo;
 import Utility.Evento;
 import Utility.Giocatore;
 import Utility.Packet;
@@ -22,7 +23,7 @@ public class ServerMatch extends Thread{
 	public ServerMatch(Socket home, Socket away) throws IOException {
 		this.giocatore1 = new Giocatore(home);
 		this.giocatore2 = new Giocatore(away);
-		this.mazzo = new Mazzo();
+		this.mazzo = new Mazzo(new Tavolo());
 	}
 	
 	public void run() {
@@ -74,7 +75,7 @@ public class ServerMatch extends Thread{
 		
 	}
 
-	private boolean convalidaGiocata() throws  Exception {
+	private boolean convalidaGiocata() throws Exception {
 		this.lastGiocata = this.giocatore1.read();
 		switch (this.lastGiocata.getEvento()) {
 		case butto:
