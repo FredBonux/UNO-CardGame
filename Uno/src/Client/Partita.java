@@ -1,5 +1,10 @@
 package Client;
 
-public class Partita {
+public class Partita extends Thread {
 
+	public void run(){
+		
+	}
+	
+	
 }
