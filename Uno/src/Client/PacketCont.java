@@ -59,21 +59,8 @@ public class PacketCont extends CTRLPacket{
 	public void subisciNormale(Carta c) {
 		// TODO Auto-generated method stub
 		
-		int flag=0; 
-		for(int i=0;i<mano.getMano().size();i++){
-			
-			if(tavolo.pushToTavoloControl(mano.getMano().get(i))){
-				Carta app=mano.getMano().get(i);
-				tavolo.pushToTavolo(app);
-				flag = 1;
-				break;
-			}
-		}
-		if(flag!=1){
-			mano.aggiungiCarta(mazzo.pesca());
-		}
-		
-	}
+		tavolo.pushToTavolo(c);
+}
 
 	@Override
 	public void subisciPIU2(Carta piu2, Carta c1, Carta c2) {
@@ -81,19 +68,7 @@ public class PacketCont extends CTRLPacket{
 		mano.aggiungiCarta(c1);
 		mano.aggiungiCarta(c2);
 		
-		int flag=0; 
-		for(int i=0;i<mano.getMano().size();i++){
-			
-			if(tavolo.pushToTavoloControl(mano.getMano().get(i))){
-				Carta app=mano.getMano().get(i);
-				tavolo.pushToTavolo(app);
-				flag = 1;
-				break;
-			}
-		}
-		if(flag!=1){
-			mano.aggiungiCarta(mazzo.pesca());
-		}
+		tavolo.pushToTavolo(piu2);
 	}
 
 	@Override
@@ -104,38 +79,26 @@ public class PacketCont extends CTRLPacket{
 		mano.aggiungiCarta(c3);
 		mano.aggiungiCarta(c4);
 		
-		int flag=0; 
-		for(int i=0;i<mano.getMano().size();i++){
-			
-			if(tavolo.pushToTavoloControl(mano.getMano().get(i))){
-				Carta app=mano.getMano().get(i);
-				tavolo.pushToTavolo(app);
-				flag = 1;
-				break;
-			}
-		}
-		if(flag!=1){
-			mano.aggiungiCarta(mazzo.pesca());
-		}
+		tavolo.pushToTavolo(piu4);
 	}
 
 	@Override
 	public void subisciCambiaColore(Carta c) {
 		// TODO Auto-generated method stub
 		
-		
+		tavolo.pushToTavolo(c);
 	}
 
 	@Override
 	public void subisciStop(Carta c) {
 		// TODO Auto-generated method stub
-		
+		tavolo.pushToTavolo(c);
 	}
 
 	@Override
 	public void subisciCambioGiro(Carta c) {
 		// TODO Auto-generated method stub
-		
+		tavolo.pushToTavolo(c);
 	}
 
 	@Override
