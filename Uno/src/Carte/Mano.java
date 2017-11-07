@@ -13,8 +13,13 @@ public class Mano {
 		this.carte = new ArrayList<Carta>();		
 	}
 	
-	public void removeByIndex(int index) {
+	public Carta removeByIndex(int index) {
+		
+		Carta app = carte.get(index);
+		
 		this.carte.remove(index);
+		
+		return app;
 	}
 	
 	public void aggiungiCarta(Carta c) {
@@ -31,4 +36,6 @@ public class Mano {
 		}
 		return -1;
 	}
+	
+	
 }

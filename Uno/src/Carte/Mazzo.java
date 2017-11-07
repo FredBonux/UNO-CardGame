@@ -7,9 +7,8 @@ import java.util.Random;
 
 public class Mazzo {
 	private ArrayList<Carta> mazzo;
-	private int carteRimaste = 108; //Su wikipedia sono 112 perchè conta 4 carte bianche
-	
-	public Mazzo() {
+	private Tavolo tavolo;
+	public Mazzo(Tavolo t) {
 		mazzo = new ArrayList<Carta>();
 		//Crea il mazzo
 		mazzo.add(new Carta(TipoCarta.Normale, Colore.ROSSO, 0));
@@ -49,10 +48,13 @@ public class Mazzo {
 			mazzo.add(new Carta(TipoCarta.Piu2, Colore.GIALLO));
 		}
 		Collections.shuffle(this.mazzo);
+		tavolo=t;
 	}
 	
 	public Carta pesca() {
-		this.carteRimaste --;
+		if(mazzo.size()==1)							//finiscono le carte
+			mazzo = tavolo.changeToMazzo();
+		
 		Carta ret = this.mazzo.get(0);
 		this.mazzo.remove(0);
 		return ret;

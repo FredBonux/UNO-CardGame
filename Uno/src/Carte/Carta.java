@@ -3,6 +3,7 @@ package Carte;
 import java.io.Serializable;
 
 public class Carta implements Serializable, Comparable<Carta>{
+	
 	private final TipoCarta tipoCarta;
 	private Colore coloreCarta;
 	private int numeroCarta;
