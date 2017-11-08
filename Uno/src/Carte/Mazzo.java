@@ -23,6 +23,7 @@ public class Mazzo {
 		mazzo.add(new Carta(TipoCarta.Piu4));
 		mazzo.add(new Carta(TipoCarta.Piu4));
 		mazzo.add(new Carta(TipoCarta.Piu4));
+		
 		for(int i = 0; i < 2; i++) {
 			for(int j = 1; j < 10; j++) {
 				//Carta normali
@@ -31,16 +32,19 @@ public class Mazzo {
 				mazzo.add(new Carta(TipoCarta.Normale, Colore.AZZURRO, j));
 				mazzo.add(new Carta(TipoCarta.Normale, Colore.GIALLO, j));
 			}
+			
 			//Stop
 			mazzo.add(new Carta(TipoCarta.Stop, Colore.ROSSO));
 			mazzo.add(new Carta(TipoCarta.Stop, Colore.VERDE));
 			mazzo.add(new Carta(TipoCarta.Stop, Colore.AZZURRO));
 			mazzo.add(new Carta(TipoCarta.Stop, Colore.GIALLO));
+			
 			//Cambio Giro
 			mazzo.add(new Carta(TipoCarta.CambioGiro, Colore.ROSSO));
 			mazzo.add(new Carta(TipoCarta.CambioGiro, Colore.VERDE));
 			mazzo.add(new Carta(TipoCarta.CambioGiro, Colore.AZZURRO));
 			mazzo.add(new Carta(TipoCarta.CambioGiro, Colore.GIALLO));
+			
 			//Piu2
 			mazzo.add(new Carta(TipoCarta.Piu2, Colore.ROSSO));
 			mazzo.add(new Carta(TipoCarta.Piu2, Colore.VERDE));
