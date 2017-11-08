@@ -17,13 +17,15 @@ public class ServerMatch extends Thread{
 	private Giocatore giocatore2;
 	private Mazzo mazzo = null;
 	private Packet lastGiocata = null;
+	private Tavolo tavolo = null;
 	
 	private boolean isRunning = true; //E' true fino a quando la partita non è finita
 	
 	public ServerMatch(Socket home, Socket away) throws IOException {
 		this.giocatore1 = new Giocatore(home);
 		this.giocatore2 = new Giocatore(away);
-		this.mazzo = new Mazzo(new Tavolo());
+		this.tavolo = new Tavolo();
+		this.mazzo = new Mazzo(this.tavolo);
 	}
 	
 	public void run() {
@@ -81,8 +83,8 @@ public class ServerMatch extends Thread{
 		case butto:
 			Carta c = this.lastGiocata.getCarte().get(0);
 			
-			//TODO: manca il controllo sul tavolo
-			if(!this.giocatore1.hasCarta(c)) return false;
+			if(!this.tavolo.pushToTavoloControl(c)) return false; //Controllo sul tavolo
+			if(!this.giocatore1.hasCarta(c)) return false; //Controllo sulla mano del giocatore 1
 			else return true;
 		case pesco:
 			return true;
@@ -97,7 +99,7 @@ public class ServerMatch extends Thread{
 		//rimuovo la carta dalla mano del giocatore
 		this.giocatore1.getMano().removeByIndex(this.giocatore1.getMano().findCarta(cartaGiocata));
 		//posiziono la carta in cima al tavolo
-			//this.tavolo.push()
+		this.tavolo.pushToTavolo(cartaGiocata);
 		
 		//Invio la giocata all'avversario
 		switch (cartaGiocata.getTipoCarta()) {

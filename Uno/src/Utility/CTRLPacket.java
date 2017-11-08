@@ -13,6 +13,11 @@ public abstract class CTRLPacket {
 		this.callToAction();
 	}	
 	
+	public void readPacket(Packet p) {
+		this.pacchetto = p;
+		this.callToAction();
+	}
+	
 	//Funzione che richiama la funzione astratta dell'evento
 	public void callToAction() {
 		switch (this.pacchetto.getEvento()) {
