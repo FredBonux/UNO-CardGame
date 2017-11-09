@@ -14,9 +14,6 @@ public class Carta implements Serializable, Comparable<Carta>{
 		this.tipoCarta = tipoCarta;
 		this.coloreCarta = coloreCarta;
 		this.numeroCarta = numeroCarta;
-		Carta c = new Carta(tipoCarta,coloreCarta,numeroCarta);
-		this.x = trovaX(c);
-		this.y= trovaY(c);
 	}
 
 	public Carta(TipoCarta tipo, Colore colore) {
@@ -81,7 +78,7 @@ public class Carta implements Serializable, Comparable<Carta>{
 			y=330;
 		}else{
 			if(c.tipoCarta==TipoCarta.Piu4)
-			y=440;
+			y=439;
 			if(c.tipoCarta==TipoCarta.CambioColore)
 				y=0;
 		}	
@@ -93,37 +90,37 @@ public class Carta implements Serializable, Comparable<Carta>{
 		if(c.tipoCarta == tipoCarta.Normale){
 			switch (c.getNumeroCarta()){
 				case 0: x=0; break;
-				case 1: x= 86;break;
-				case 2: x=172;break;
-				case 3: x=258;break;
-				case 4: x=344;break;
-				case 5: x=430;break;
-				case 6: x=516;break;
-				case 7: x=602;break;
-				case 8: x=688;break;
-				case 9: x=774;break;
+				case 1: x=73; break;
+				case 2: x=146; break;
+				case 3: x=219; break;
+				case 4: x=292; break;
+				case 5: x=365; break;
+				case 6: x=438; break;
+				case 7: x=511; break;
+				case 8: x=584; break;
+				case 9: x=658; break;
 			}
 		}else{
 			if(c.tipoCarta==TipoCarta.Stop)
-				x=860;
+				x=730;
 			if(c.tipoCarta==TipoCarta.CambioGiro)
-				x=946;
+				x=804;
 			if(c.tipoCarta==TipoCarta.Piu2)
-				x=1032;
+				x=876;
 			if(c.tipoCarta==TipoCarta.CambioColore)
-				x=1114;
+				x=951;
 			if(c.tipoCarta==TipoCarta.Piu4)
-				x=1114;
+				x=951;
 		}
 		return x;
 	}
 
 	public int getX() {
-		return x;
+		return this.trovaX(this);
 	}
 
 	public int getY() {
-		return y;
+		return this.trovaY(this);
 	}
 	
 	
