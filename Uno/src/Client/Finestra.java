@@ -1,3 +1,4 @@
+package Client;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.io.File;
@@ -10,7 +11,6 @@ import javax.swing.border.EmptyBorder;
 import Carte.Carta;
 import Carte.Colore;
 import Carte.TipoCarta;
-import Client.Card;
 
 import javax.swing.JLabel;
 import javax.imageio.ImageIO;
@@ -27,6 +27,8 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.Font;
 
 public class Finestra extends JFrame {
 
@@ -40,6 +42,8 @@ public class Finestra extends JFrame {
 	private JLabel label_2;
 	private JLabel label_3;
 	private Card label_4;
+	private JButton btnNewButton;
+	private Card card;
 
 	/**
 	 * Launch the application.
@@ -73,7 +77,7 @@ public class Finestra extends JFrame {
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBorder(null);
-		scrollPane.setBounds(137, 287, 514, 135);
+		scrollPane.setBounds(137, 287, 514, 137);
 		scrollPane.setOpaque(false);
 		scrollPane.getViewport().setOpaque(false);
 		
@@ -94,7 +98,7 @@ public class Finestra extends JFrame {
 		scrollPane_1.setBorder(null);
 		scrollPane_1.setOpaque(false);
 		scrollPane_1.getViewport().setOpaque(false);
-		scrollPane_1.setBounds(137, 26, 514, 135);
+		scrollPane_1.setBounds(137, 26, 514, 137);
 		contentPane.add(scrollPane_1);
 		
 		panel = new JPanel();
@@ -115,9 +119,20 @@ public class Finestra extends JFrame {
 		try {
 			BufferedImage bg = ImageIO.read(new File("./Bunker_-_The_Underground_Game_Background_Red_Dawn.jpg"));
 			BufferedImage bgResized = resize(bg, 788, 475);
+			
+			btnNewButton = new JButton("UNO!");
+			btnNewButton.setEnabled(false);
+			btnNewButton.setForeground(Color.BLACK);
+			btnNewButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 38));
+			btnNewButton.setBounds(137, 174, 157, 101);
+			contentPane.add(btnNewButton);
 			label.setIcon(new ImageIcon(bgResized));
 			contentPane.add(label);
 			label.setBounds(0, 0, 788, 475);
+			
+			card = new Card();
+			card.setBounds(345, 169, 87, 106);
+			contentPane.add(card);
 		} catch (IOException e) {
 			
 		}
