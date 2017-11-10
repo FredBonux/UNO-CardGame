@@ -110,6 +110,7 @@ public class Finestra extends JFrame {
 		sfondo = new JLabel("");
 		
 		sfondoCarta = new JPanel();
+		sfondoCarta.setBackground(new Color(0, 0, 0, 0));
 		sfondoCarta.setBounds(354, 169, 73, 107);
 		contentPane.add(sfondoCarta);
 		
@@ -119,7 +120,7 @@ public class Finestra extends JFrame {
 		
 		try {
 			
-			BufferedImage bg = ImageIO.read(new File("./Bunker_-_The_Underground_Game_Background_Red_Dawn.jpg"));
+			BufferedImage bg = ImageIO.read(new File("./img/bg.jpg"));
 			BufferedImage bgResized = resize(bg, 788, 475);
 			
 			btnUno = new JButton("UNO!");

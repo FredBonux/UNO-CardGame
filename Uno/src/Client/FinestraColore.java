@@ -58,7 +58,7 @@ public class FinestraColore extends JFrame {
 				dispose();
 			}
 		});
-		btnRosso.setIcon(new ImageIcon("img\red.jpg"));
+		btnRosso.setIcon(new ImageIcon("./img/red.jpg"));
 		btnRosso.setBackground(Color.RED);
 		btnRosso.setBounds(0, 0, 172, 152);
 		contentPane.add(btnRosso);
@@ -70,7 +70,7 @@ public class FinestraColore extends JFrame {
 				dispose();
 			}
 		});
-		btnGiallo.setIcon(new ImageIcon("img\\giallo.jpg"));
+		btnGiallo.setIcon(new ImageIcon("./img/giallo.jpg"));
 		btnGiallo.setBackground(Color.YELLOW);
 		btnGiallo.setBounds(171, 0, 172, 152);
 		contentPane.add(btnGiallo);
@@ -82,7 +82,7 @@ public class FinestraColore extends JFrame {
 				dispose();
 			}
 		});
-		btnVerde.setIcon(new ImageIcon("img\\green.png"));
+		btnVerde.setIcon(new ImageIcon("./img/green.png"));
 		btnVerde.setBackground(Color.GREEN);
 		btnVerde.setBounds(0, 152, 172, 157);
 		contentPane.add(btnVerde);
@@ -94,7 +94,7 @@ public class FinestraColore extends JFrame {
 				dispose();
 			}
 		});
-		btnBlu.setIcon(new ImageIcon("img\blue.png"));
+		btnBlu.setIcon(new ImageIcon("./img/blue.png"));
 		btnBlu.setBackground(Color.BLUE);
 		btnBlu.setBounds(171, 152, 172, 157);
 		contentPane.add(btnBlu);

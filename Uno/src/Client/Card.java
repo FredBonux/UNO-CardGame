@@ -36,10 +36,10 @@ public class Card extends JLabel implements MouseListener{
 		super("");
 		try {
 			this.carta = c;
-			MarvinImage image= MarvinImageIO.loadImage("./cards.png");
+			MarvinImage image= MarvinImageIO.loadImage("./img/cards.png");
 			crop(image.clone(), image, c.getX(), c.getY(), DIMX, DIMY);
-			MarvinImageIO.saveImage(image, "c.png");
-			this.img = ImageIO.read(new File("c.png"));
+			MarvinImageIO.saveImage(image, "./img/c.png");
+			this.img = ImageIO.read(new File("./img/c.png"));
 			this.img = this.makeRoundedCorner(this.img, 25);
 			this.icon = new ImageIcon(this.img);
 			this.setIcon(icon);
@@ -50,10 +50,10 @@ public class Card extends JLabel implements MouseListener{
 	
 	public Card() {
 		try {
-			MarvinImage image= MarvinImageIO.loadImage("./cards.png");
+			MarvinImage image= MarvinImageIO.loadImage("./img/cards.png");
 			crop(image.clone(), image, BACKX, BACKY,DIMX, DIMY);
-			MarvinImageIO.saveImage(image, "c.png");
-			this.img = ImageIO.read(new File("c.png"));
+			MarvinImageIO.saveImage(image, "./img/c.png");
+			this.img = ImageIO.read(new File("./img/c.png"));
 			this.img = this.makeRoundedCorner(this.img, 25);
 			this.icon = new ImageIcon(this.img);
 			this.setIcon(icon);
