@@ -33,17 +33,16 @@ import java.awt.Font;
 public class Finestra extends JFrame {
 
 	private JPanel contentPane;
-	private JLabel label;
-	private JScrollPane scrollPane;
-	private JScrollPane scrollPane_1;
-	private JPanel panel;
-	private JLabel label_1;
-	private JPanel panel_1;
+	private JLabel sfondo;
+	private JScrollPane scrollPane_mano;
+	private JScrollPane scrollPane_mano_avv;
+	private JPanel panel_mano_avv;
+	private JPanel panel_mano;
 	private JLabel label_2;
-	private JLabel label_3;
-	private Card label_4;
-	private JButton btnNewButton;
+	private Card mazzo;
+	private JButton btnUno;
 	private Card card;
+	private JPanel sfondoCarta;
 
 	/**
 	 * Launch the application.
@@ -75,91 +74,79 @@ public class Finestra extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		scrollPane = new JScrollPane();
-		scrollPane.setBorder(null);
-		scrollPane.setBounds(137, 287, 514, 137);
-		scrollPane.setOpaque(false);
-		scrollPane.getViewport().setOpaque(false);
+		scrollPane_mano = new JScrollPane();
+		scrollPane_mano.setBorder(null);
+		scrollPane_mano.setBounds(137, 287, 514, 137);
+		scrollPane_mano.setOpaque(false);
+		scrollPane_mano.getViewport().setOpaque(false);
 		
-		label_4 = new Card();
-		label_4.setBounds(564, 169, 87, 106);
-		contentPane.add(label_4);
-		contentPane.add(scrollPane);
+		mazzo = new Card();
+		mazzo.setBounds(564, 169, 87, 106);
+		contentPane.add(mazzo);
+		contentPane.add(scrollPane_mano);
 		
-		panel_1 = new JPanel();
-		panel_1.setOpaque(false);
-		panel_1.setBorder(null);
-		scrollPane.setViewportView(panel_1);
+		panel_mano = new JPanel();
+		panel_mano.setOpaque(false);
+		panel_mano.setBorder(null);
+		scrollPane_mano.setViewportView(panel_mano);
 		
 		label_2 = new JLabel("");
-		panel_1.add(label_2);
+		panel_mano.add(label_2);
 		
-		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBorder(null);
-		scrollPane_1.setOpaque(false);
-		scrollPane_1.getViewport().setOpaque(false);
-		scrollPane_1.setBounds(137, 26, 514, 137);
-		contentPane.add(scrollPane_1);
+		scrollPane_mano_avv = new JScrollPane();
+		scrollPane_mano_avv.setBorder(null);
+		scrollPane_mano_avv.setOpaque(false);
+		scrollPane_mano_avv.getViewport().setOpaque(false);
+		scrollPane_mano_avv.setBounds(137, 26, 514, 137);
+		contentPane.add(scrollPane_mano_avv);
 		
-		panel = new JPanel();
-		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
-		panel.setBorder(null);
-		panel.setOpaque(false);
+		panel_mano_avv = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel_mano_avv.getLayout();
+		panel_mano_avv.setBorder(null);
+		panel_mano_avv.setOpaque(false);
 
-		scrollPane_1.setViewportView(panel);
-		for(int i = 0; i < 9; i++) {
-			Card app = new Card();
-			panel.add(app);
-
-			Card app2 = new Card(new Carta(TipoCarta.Normale, Colore.GIALLO, i));
-			panel_1.add(app2);
-		}
+		scrollPane_mano_avv.setViewportView(panel_mano_avv);
 		
-		label = new JLabel("");
+		sfondo = new JLabel("");
+		
+		sfondoCarta = new JPanel();
+		sfondoCarta.setBounds(354, 169, 73, 107);
+		contentPane.add(sfondoCarta);
+		
+		card = new Card();
+		card.setBounds(354, 169, 87, 106);
+		contentPane.add(card);
+		
 		try {
+			
 			BufferedImage bg = ImageIO.read(new File("./Bunker_-_The_Underground_Game_Background_Red_Dawn.jpg"));
 			BufferedImage bgResized = resize(bg, 788, 475);
 			
-			btnNewButton = new JButton("UNO!");
-			btnNewButton.setEnabled(false);
-			btnNewButton.setForeground(Color.BLACK);
-			btnNewButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 38));
-			btnNewButton.setBounds(137, 174, 157, 101);
-			contentPane.add(btnNewButton);
-			label.setIcon(new ImageIcon(bgResized));
-			contentPane.add(label);
-			label.setBounds(0, 0, 788, 475);
+			btnUno = new JButton("UNO!");
+			btnUno.setEnabled(false);
+			btnUno.setForeground(Color.BLACK);
+			btnUno.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 38));
+			btnUno.setBounds(137, 174, 157, 101);
+			contentPane.add(btnUno);
+			sfondo.setIcon(new ImageIcon(bgResized));
+			contentPane.add(sfondo);
+			sfondo.setBounds(0, 0, 788, 475);
 			
-			card = new Card();
-			card.setBounds(345, 169, 87, 106);
-			contentPane.add(card);
+			
 		} catch (IOException e) {
 			
 		}
 		
-		
-		/*image= MarvinImageIO.loadImage("./cards.png");
-		crop(image.clone(), image, 0, 440, 74, 110);
-		MarvinImageIO.saveImage(image, "./c.png");
-		File app = new File("./c.png");
-		ImageIcon an = new ImageIcon(app.getAbsolutePath());
-		label_3.setIcon(an);
-		
-		JLabel label_4 = new JLabel("");
-		label_4.setOpaque(false);
-		label_4.setBounds(555, 164, 96, 112);
-		panel.add(label_4);
-		
-		image= MarvinImageIO.loadImage("./cards.png");
-		crop(image.clone(), image, 10, 300, 74, 110);
-		MarvinImageIO.saveImage(image, "./c.png");
-		ImageIcon an2 = new ImageIcon("./c.png");
-		label_4.setIcon(an2);*/
-		//JLabel lab=new JLabel("");
-		//panel.add(lab);
-		//lab.setIcon(an);
 	}
 	
+	public JPanel getSfondoCarta() {
+		return sfondoCarta;
+	}
+
+	public void setCard(Card card) {
+		this.card = card;
+	}
+
 	public static BufferedImage resize(BufferedImage image, int width, int height) {
 	    BufferedImage bi = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
 	    Graphics2D g2d = (Graphics2D) bi.createGraphics();

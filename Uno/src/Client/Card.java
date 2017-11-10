@@ -16,11 +16,13 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class Card extends JLabel {
+public class Card extends JLabel implements MouseListener{
 	private Carta carta;
 	private static final int DIMX = 74;
 	private static final int DIMY = 110;
@@ -41,6 +43,7 @@ public class Card extends JLabel {
 			this.img = this.makeRoundedCorner(this.img, 25);
 			this.icon = new ImageIcon(this.img);
 			this.setIcon(icon);
+			this.addMouseListener(this);
 		} catch(Exception e) {
 		}
 	}
@@ -84,5 +87,40 @@ public class Card extends JLabel {
 	    g2.dispose();
 
 	    return output;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+
+		Controller.giocaCarta(this);
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public Carta getCarta () {
+		return carta;
 	}
 }
