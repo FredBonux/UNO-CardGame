@@ -20,8 +20,10 @@ public class Giocatore {
 			this.outStream = new ObjectOutputStream(socket.getOutputStream());
 			this.inStream = new ObjectInputStream(socket.getInputStream());
 			this.mano = new Mano();
+			this.outStream.writeObject(new Packet(Evento.connessione)); //Invio Connessione
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 

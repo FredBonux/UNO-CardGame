@@ -45,22 +45,6 @@ public class Finestra extends JFrame {
 	private JPanel sfondoCarta;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Finestra frame = new Finestra();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public Finestra() {
@@ -133,6 +117,7 @@ public class Finestra extends JFrame {
 			contentPane.add(sfondo);
 			sfondo.setBounds(0, 0, 788, 475);
 			
+			this.setVisible(true);
 			
 		} catch (IOException e) {
 			

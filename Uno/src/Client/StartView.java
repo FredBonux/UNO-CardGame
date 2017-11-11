@@ -45,16 +45,8 @@ public class StartView extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StartView frame = new StartView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		StartView frame = new StartView();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -110,10 +102,12 @@ public class StartView extends JFrame {
 					if(ip.length() <= 0) return;
 					String port = portaServer.getText();
 					if(port.length() <= 0) return;
-					Socket socket = null;
 					try {
-						socket = new Socket(ip, Integer.parseInt(port));
-						(new Partita(socket)).start();
+						Socket socket = new Socket(ip, Integer.parseInt(port));
+						Partita p = new Partita(socket);
+						p.start();
+						dispose();
+						return;
 					}catch(Exception ex) {
 						JOptionPane.showMessageDialog(that, "Non è stato possibile connettersi al server!", "ERRORE!", JOptionPane.ERROR_MESSAGE);
 						ex.printStackTrace();

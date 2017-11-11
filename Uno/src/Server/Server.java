@@ -1,9 +1,14 @@
 package Server;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+
+import Utility.Evento;
+import Utility.Giocatore;
+import Utility.Packet;
 
 public class Server extends Thread{
 	
@@ -19,8 +24,12 @@ public class Server extends Thread{
 		while(isRunning) {
 			try {
 				Socket home = this.serverSocket.accept(); //Si connette il primo giocatore di una partita
+					System.out.println("SERVER: socket attivo -> " + home.toString());
+					Giocatore g1 = new Giocatore(home);
 				Socket away = this.serverSocket.accept(); //Si connette il secondo
-				ServerMatch sm = (new ServerMatch(home,away)); //Creo la partita
+					System.out.println("SERVER: socket attivo -> " + away.toString());
+					Giocatore g2 = new Giocatore(away);
+				ServerMatch sm = (new ServerMatch(g1,g2)); //Creo la partita
 				this.matches.add(sm); //Aggiungo la partita alla lista di partite attive
 				sm.start(); //Inizia la partita
 				

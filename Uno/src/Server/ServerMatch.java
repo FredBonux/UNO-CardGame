@@ -21,9 +21,9 @@ public class ServerMatch extends Thread{
 	
 	private boolean isRunning = true; //E' true fino a quando la partita non è finita
 	
-	public ServerMatch(Socket home, Socket away) throws IOException {
-		this.giocatore1 = new Giocatore(home);
-		this.giocatore2 = new Giocatore(away);
+	public ServerMatch(Giocatore home, Giocatore away) throws IOException {
+		this.giocatore1 = home;
+		this.giocatore2 = away;
 		this.tavolo = new Tavolo();
 		this.mazzo = new Mazzo(this.tavolo);
 	}
