@@ -19,10 +19,13 @@ public class Carta implements Serializable, Comparable<Carta>{
 	public Carta(TipoCarta tipo, Colore colore) {
 		this.tipoCarta = tipo;
 		this.coloreCarta = colore;
+		this.numeroCarta = -1;
 	}
 	
 	public Carta(TipoCarta tipo) {
 		this.tipoCarta = tipo;
+		this.numeroCarta = -1;
+		this.coloreCarta = null;
 	}
 
 	public Colore getColoreCarta() {
@@ -67,15 +70,15 @@ public class Carta implements Serializable, Comparable<Carta>{
 	
 	public int trovaY(Carta c){
 		int y=0;
-		if(c.tipoCarta==TipoCarta.Normale){
-		if(c.getColoreCarta()==Colore.ROSSO)
-			y=0;
-		if(c.getColoreCarta()==Colore.GIALLO)
-			y=110;
-		if(c.getColoreCarta()==Colore.VERDE)
-			y=220;
-		if(c.getColoreCarta()==Colore.AZZURRO)
-			y=330;
+		if(c.tipoCarta==TipoCarta.Normale || c.tipoCarta == TipoCarta.Stop || c.tipoCarta == TipoCarta.Piu2 || c.tipoCarta == TipoCarta.CambioGiro){
+			if(c.getColoreCarta()==Colore.ROSSO)
+				y=0;
+			else if(c.getColoreCarta()==Colore.GIALLO)
+				y=110;
+			else if(c.getColoreCarta()==Colore.VERDE)
+				y=220;
+			else if(c.getColoreCarta()==Colore.AZZURRO)
+				y=329;
 		}else{
 			if(c.tipoCarta==TipoCarta.Piu4)
 			y=439;
@@ -96,17 +99,17 @@ public class Carta implements Serializable, Comparable<Carta>{
 				case 4: x=292; break;
 				case 5: x=365; break;
 				case 6: x=438; break;
-				case 7: x=511; break;
-				case 8: x=584; break;
-				case 9: x=658; break;
+				case 7: x=512; break;
+				case 8: x=585; break;
+				case 9: x=659; break;
 			}
 		}else{
 			if(c.tipoCarta==TipoCarta.Stop)
-				x=730;
+				x=731;
 			if(c.tipoCarta==TipoCarta.CambioGiro)
 				x=804;
 			if(c.tipoCarta==TipoCarta.Piu2)
-				x=876;
+				x=877;
 			if(c.tipoCarta==TipoCarta.CambioColore)
 				x=951;
 			if(c.tipoCarta==TipoCarta.Piu4)

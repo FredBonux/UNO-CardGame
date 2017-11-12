@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import Carte.Carta;
 import Carte.Colore;
 import Carte.TipoCarta;
+import Utility.Giocatore;
 
 import javax.swing.JLabel;
 import javax.imageio.ImageIO;
@@ -29,6 +30,7 @@ import java.awt.image.BufferedImage;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class Finestra extends JFrame {
 
@@ -38,11 +40,13 @@ public class Finestra extends JFrame {
 	private JScrollPane scrollPane_mano_avv;
 	private JPanel panel_mano_avv;
 	private JPanel panel_mano;
-	private JLabel label_2;
 	private Card mazzo;
 	private JButton btnUno;
 	private Card card;
 	private JPanel sfondoCarta;
+	
+	private Giocatore giocatore;
+	private JLabel lblInAttesaDella;
 
 	/**
 	 * Create the frame.
@@ -60,9 +64,19 @@ public class Finestra extends JFrame {
 		
 		scrollPane_mano = new JScrollPane();
 		scrollPane_mano.setBorder(null);
-		scrollPane_mano.setBounds(137, 287, 514, 137);
+		scrollPane_mano.setBounds(6, 287, 776, 137);
 		scrollPane_mano.setOpaque(false);
 		scrollPane_mano.getViewport().setOpaque(false);
+		
+		lblInAttesaDella = new JLabel("In attesa della mossa ...");
+		lblInAttesaDella.setBackground(new Color(0, 0, 0, 150));
+		lblInAttesaDella.setOpaque(true);
+		lblInAttesaDella.setForeground(Color.WHITE);
+		lblInAttesaDella.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 22));
+		lblInAttesaDella.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInAttesaDella.setBounds(0, 0, 788, 453);
+		lblInAttesaDella.setVisible(false);
+		contentPane.add(lblInAttesaDella);
 		
 		mazzo = new Card();
 		mazzo.setBounds(564, 169, 87, 106);
@@ -72,24 +86,30 @@ public class Finestra extends JFrame {
 		panel_mano = new JPanel();
 		panel_mano.setOpaque(false);
 		panel_mano.setBorder(null);
-		scrollPane_mano.setViewportView(panel_mano);
+		for(int i = 0; i < Controller.giocatore.getMano().getMano().size(); i++) {
+			System.out.println("Carta: " + Controller.giocatore.getMano().getMano().get(i).getTipoCarta() + " " + Controller.giocatore.getMano().getMano().get(i).getNumeroCarta() + " " + Controller.giocatore.getMano().getMano().get(i).getColoreCarta());
+			panel_mano.add(new Card(Controller.giocatore.getMano().getMano().get(i)));
+		}
 		
-		label_2 = new JLabel("");
-		panel_mano.add(label_2);
+		scrollPane_mano.setViewportView(panel_mano);
 		
 		scrollPane_mano_avv = new JScrollPane();
 		scrollPane_mano_avv.setBorder(null);
 		scrollPane_mano_avv.setOpaque(false);
 		scrollPane_mano_avv.getViewport().setOpaque(false);
-		scrollPane_mano_avv.setBounds(137, 26, 514, 137);
+		scrollPane_mano_avv.setBounds(6, 26, 776, 137);
 		contentPane.add(scrollPane_mano_avv);
 		
 		panel_mano_avv = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel_mano_avv.getLayout();
 		panel_mano_avv.setBorder(null);
 		panel_mano_avv.setOpaque(false);
-
 		scrollPane_mano_avv.setViewportView(panel_mano_avv);
+
+		//Popolo lo scrollPane dell'avversario
+		for(int i = 0; i < 7; i++) {
+			panel_mano_avv.add(new Card());
+		}
 		
 		sfondo = new JLabel("");
 		
@@ -129,8 +149,8 @@ public class Finestra extends JFrame {
 		return sfondoCarta;
 	}
 
-	public void setCard(Card card) {
-		this.card = card;
+	public void setCard(Card c) {
+		this.card.updateCarta(c.getCarta());
 	}
 
 	public static BufferedImage resize(BufferedImage image, int width, int height) {
@@ -141,4 +161,19 @@ public class Finestra extends JFrame {
 	    g2d.dispose();
 	    return bi;
 	}
+	
+	public JLabel getInAttesaLbl() {
+		System.out.println("LBL");
+		return this.lblInAttesaDella;
+	}
+
+	public JPanel getPanel_mano_avv() {
+		return panel_mano_avv;
+	}
+
+	public JPanel getPanel_mano() {
+		return panel_mano;
+	}
+	
+	
 }

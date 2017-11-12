@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import Carte.Carta;
 
 public class Packet implements Serializable{
+	private static final long serialVersionUID = 7375970102973712717L;
 	private final Evento evento; //tipo di evento inviato via socket
 	private final Carta cartaSubita;
 	private final ArrayList<Carta> carte; //Alcuni eventi inviano una o piu carte
@@ -38,6 +39,10 @@ public class Packet implements Serializable{
 	public ArrayList<Carta> getCarte() {
 		return this.carte;
 	}
+	
+	public Carta getCartaSubita() {
+		return this.cartaSubita;
+	};
 	
 	
 }

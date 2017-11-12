@@ -73,12 +73,12 @@ public class StartView extends JFrame {
 			contentPane.add(lblIpServer);
 			
 			ipServer = new JTextField();
+			ipServer.setText("localhost");
 			ipServer.setHorizontalAlignment(SwingConstants.CENTER);
 			ipServer.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
 			ipServer.setBounds(115, 38, 219, 41);
 			contentPane.add(ipServer);
 			ipServer.setColumns(10);
-
 			Color c = new Color(0, 0, 0, 150);
 			
 			label = new JLabel("PORTA SERVER:");
@@ -89,6 +89,7 @@ public class StartView extends JFrame {
 			contentPane.add(label);
 			
 			portaServer = new JTextField();
+			portaServer.setText("1234");
 			portaServer.setHorizontalAlignment(SwingConstants.CENTER);
 			portaServer.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
 			portaServer.setColumns(10);

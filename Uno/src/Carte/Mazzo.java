@@ -78,4 +78,8 @@ public class Mazzo {
 			System.out.println(mazzo.get(i));
 		}
 	}
+	
+	public void add(Carta c) {
+		mazzo.add(c);
+	}
 }

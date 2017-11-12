@@ -5,12 +5,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Carte.Carta;
-import marvin.image.MarvinImage; 
-import marvin.io.MarvinImageIO;
-import marvin.plugin.MarvinImagePlugin;
-import marvin.util.MarvinPluginLoader;
-
-import static marvin.MarvinPluginCollection.*;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -23,46 +17,55 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class Card extends JLabel implements MouseListener{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4707778825339408131L;
 	private Carta carta;
-	private static final int DIMX = 74;
+	private static final int DIMX = 73;
 	private static final int DIMY = 110;
 
 	private static final int BACKX = 0;
 	private static final int BACKY = 439;
 	private ImageIcon icon;
-	private BufferedImage img;
+	private static BufferedImage source;
+	
 	
 	public Card(Carta c) {
 		super("");
 		try {
 			this.carta = c;
-			MarvinImage image= MarvinImageIO.loadImage("./img/cards.png");
-			crop(image.clone(), image, c.getX(), c.getY(), DIMX, DIMY);
-			MarvinImageIO.saveImage(image, "./img/c.png");
-			this.img = ImageIO.read(new File("./img/c.png"));
-			this.img = this.makeRoundedCorner(this.img, 25);
-			this.icon = new ImageIcon(this.img);
-			this.setIcon(icon);
+			this.updateImage();
 			this.addMouseListener(this);
 		} catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
 	public Card() {
 		try {
-			MarvinImage image= MarvinImageIO.loadImage("./img/cards.png");
-			crop(image.clone(), image, BACKX, BACKY,DIMX, DIMY);
-			MarvinImageIO.saveImage(image, "./img/c.png");
-			this.img = ImageIO.read(new File("./img/c.png"));
-			this.img = this.makeRoundedCorner(this.img, 25);
-			this.icon = new ImageIcon(this.img);
-			this.setIcon(icon);
+			this.updateRetro();
 		} catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 	
-	private BufferedImage makeRoundedCorner(BufferedImage image, int cornerRadius) {
+	public void updateCarta(Carta c) {
+		this.carta = c;
+		this.updateImage();
+	}
+	
+	private void updateRetro() {
+		this.icon = new ImageIcon(makeRoundedCorner(source.getSubimage(BACKX, BACKY, DIMX, DIMY), 25));
+		this.setIcon(icon);
+	}
+	
+	private synchronized void updateImage() {
+		this.icon = new ImageIcon(makeRoundedCorner(source.getSubimage(this.carta.getX(), this.carta.getY(), DIMX, DIMY), 25));
+		this.setIcon(icon);
+	}
+	
+	private static BufferedImage makeRoundedCorner(BufferedImage image, int cornerRadius) {
 	    int w = image.getWidth();
 	    int h = image.getHeight();
 	    BufferedImage output = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
@@ -122,5 +125,18 @@ public class Card extends JLabel implements MouseListener{
 	
 	public Carta getCarta () {
 		return carta;
+	}
+	
+	private static BufferedImage loadSource() {
+		try {
+			return ImageIO.read(new File("./img/cards.png"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static void loadSources() {
+		source = loadSource();
 	}
 }

@@ -8,11 +8,6 @@ import Carte.TipoCarta;
 public abstract class CTRLPacket {
 	private Packet pacchetto;
 	
-	public CTRLPacket(Packet p) {
-		this.pacchetto = p;
-		this.callToAction();
-	}	
-	
 	public void readPacket(Packet p) {
 		this.pacchetto = p;
 		this.callToAction();
