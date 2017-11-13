@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import javax.swing.JOptionPane;
+
 import Carte.Mano;
 import Utility.Evento;
 import Utility.Giocatore;
@@ -72,7 +74,14 @@ public class Partita extends Thread {
 	}
 	
 	public void win() {
-		isGame = true;
+		//Stoppo i Thread di lettura e esecuzione
+		isGame = false;
+		grt.isGameOn = false; 
+		giocatore.getIrb().hasError = true;
+		//Mostro la vittoria
+		JOptionPane.showMessageDialog(f, "HAI VINTO!", "La partita e' finita!", JOptionPane.WARNING_MESSAGE);
+		f.dispose();
+		System.exit(0);
 	}
 
 	public void subisci(Packet p) {
@@ -99,7 +108,14 @@ public class Partita extends Thread {
 	}
 	
 	public void defeat() {
+		//Stoppo i Thread di lettura e esecuzione
 		isGame = false;
+		grt.isGameOn = false; 
+		giocatore.getIrb().hasError = true;
+		//Mostro la vittoria
+		JOptionPane.showMessageDialog(f, "HAI PERSO!", "La partita e' finita!", JOptionPane.WARNING_MESSAGE);
+		f.dispose();
+		System.exit(0);
 	}
 	
 	public void otherPesca() {

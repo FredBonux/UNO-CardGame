@@ -9,6 +9,7 @@ public class InputReadBuffered extends Thread{
 	private ObjectInputStream ois;
 	private Queue<Packet> buffer;
 	private Semaphore semaforo = new Semaphore(0);
+	public boolean hasError = false;
 	
 	public InputReadBuffered(ObjectInputStream in) {
 		this.ois = in;
@@ -17,7 +18,6 @@ public class InputReadBuffered extends Thread{
 	}
 	
 	public void run() {
-		boolean hasError = false;
 		while(!hasError) {
 			try {
 				Packet p = (Packet) ois.readObject();
@@ -26,7 +26,7 @@ public class InputReadBuffered extends Thread{
 				semaforo.release();
 			} catch (Exception e) {
 				hasError = true;
-				e.printStackTrace();
+				System.out.println("DISCONNESSO");
 			}
 		}
 	}

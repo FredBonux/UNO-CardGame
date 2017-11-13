@@ -7,6 +7,7 @@ import Utility.Packet;
 public class GameReadThread extends Thread{
 	private Partita partita;
 	private InputReadBuffered irb;
+	public boolean isGameOn = true;
 	
 	public GameReadThread(Partita p) {
 		partita = p;
@@ -15,8 +16,7 @@ public class GameReadThread extends Thread{
 	}
 	
 	public void run() {
-		boolean hasError = false;
-		while(!hasError) {
+		while(isGameOn) {
 			try {
 				Packet p = irb.pop();
 				System.out.println("CHIAMATO: " + p);
@@ -56,7 +56,7 @@ public class GameReadThread extends Thread{
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				hasError = true;
+				isGameOn = false;
 			}
 		}
 	}

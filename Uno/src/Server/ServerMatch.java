@@ -155,9 +155,11 @@ public class ServerMatch extends Thread{
 		if(this.getGiocatore1().haVinto()) {
 			this.getGiocatore1().write((new Packet(Evento.vittoria)));
 			this.getGiocatore2().write((new Packet(Evento.sconfitta)));
+			this.isRunning = false;
 		}else if(this.getGiocatore2().haVinto()) {
 			this.getGiocatore2().write((new Packet(Evento.vittoria)));
 			this.getGiocatore1().write((new Packet(Evento.sconfitta)));
+			this.isRunning = false;
 		}
 	}
 	

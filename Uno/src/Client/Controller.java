@@ -36,15 +36,18 @@ public class Controller {
 			fin.setEnabled(true);
 			c.getCarta().setColoreCarta(fc.coloreScelto);
 			if(giocaSpeciale(c)) {
+				if(TipoCarta.Piu4 == c.getCarta().getTipoCarta()) 
+					for(int i = 0; i < 4; i++) avversarioPesca();
 				rimuoviDaMano(c);
 				setCartaTavolo(c.getCarta());
 				//partita.disableView();
 			}else {
 				JOptionPane.showMessageDialog(fin,"SERVER: Questa carta non puo' essere giocata!");
 			}
-		}else if(c.getCarta().getColoreCarta() == carta_tavolo.getCarta().getColoreCarta() || c.getCarta().getNumeroCarta() == carta_tavolo.getCarta().getNumeroCarta()){		//controllo colore e numero
+		}else if(c.getCarta().getColoreCarta() == carta_tavolo.getCarta().getColoreCarta() || (c.getCarta().getNumeroCarta() == carta_tavolo.getCarta().getNumeroCarta() && carta_tavolo.getCarta().getNumeroCarta() > -1)){		//controllo colore e numero
 			if(giocaNonSpeciale(c)) {
-				System.out.println("Giocata Corretta!");
+				if(TipoCarta.Piu2 == c.getCarta().getTipoCarta()) 
+					for(int i = 0; i < 2; i++) avversarioPesca();
 				cleanSfondoCarta();
 				rimuoviDaMano(c);
 				setCartaTavolo(c.getCarta());
