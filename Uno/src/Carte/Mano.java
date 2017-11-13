@@ -26,6 +26,12 @@ public class Mano {
 		this.carte.add(c);
 	}
 	
+	public void aggiungiCarte(ArrayList<Carta> ar) {
+		for(int i = 0; i < ar.size(); i++) {
+			this.carte.add(ar.get(i));
+		}
+	}
+	
 	public ArrayList<Carta> getMano() {
 		return this.carte;
 	}

@@ -77,6 +77,7 @@ public class Partita extends Thread {
 
 	public void subisci(Packet p) {
 		Controller.setCartaTavolo(p.getCartaSubita());
+		Controller.avversarioGioca();
 		switch (p.getCartaSubita().getTipoCarta()) {
 		case Piu2:
 			giocatore.getMano().aggiungiCarta(p.getCarte().get(0));

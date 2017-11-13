@@ -43,8 +43,10 @@ public class GameReadThread extends Thread{
 					case okPlay:
 						Controller.lastCheck = true;
 						Controller.playCheckSemaphore.release();
+						Controller.lastPacket = p;
 						break;
 					case badPlay: 
+						Controller.lastPacket = p;
 						Controller.lastCheck = false;
 						Controller.playCheckSemaphore.release();
 					default: 

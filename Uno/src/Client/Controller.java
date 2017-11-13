@@ -24,6 +24,7 @@ public class Controller {
 	static Partita partita;
 	static Semaphore playCheckSemaphore = new Semaphore(0);
 	static boolean lastCheck = false;
+	static Packet lastPacket;
 	
 	static void giocaCarta (Card c) {
 		
@@ -37,7 +38,7 @@ public class Controller {
 			if(giocaSpeciale(c)) {
 				rimuoviDaMano(c);
 				setCartaTavolo(c.getCarta());
-				partita.disableView();
+				//partita.disableView();
 			}else {
 				JOptionPane.showMessageDialog(fin,"SERVER: Questa carta non puo' essere giocata!");
 			}
@@ -48,7 +49,7 @@ public class Controller {
 				rimuoviDaMano(c);
 				setCartaTavolo(c.getCarta());
 				System.out.println("SETTATA");
-				partita.disableView();
+				//partita.disableView();
 			}else {
 				JOptionPane.showMessageDialog(fin,"SERVER: Questa carta non puo' essere giocata!");
 			}
@@ -124,5 +125,24 @@ public class Controller {
 		fin.getPanel_mano_avv().add(new Card());
 	}
 	
+	static void avversarioGioca() {
+		fin.getPanel_mano_avv().remove(0);
+	}
+	
+	static void pesca() {
+		try {
+			giocatore.write(new Packet(Evento.pesco));
+			playCheckSemaphore.acquire();
+			Carta pescata = lastPacket.getCartaSubita();
+			giocatore.getMano().aggiungiCarta(pescata);
+			fin.getPanel_mano().add(new Card(pescata));
+			if(lastCheck) {
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 }

@@ -126,12 +126,14 @@ public class ServerMatch extends Thread{
 			this.scambioGiocatori();
 			break;
 		case Piu2:
-			//TODO: manca l'update della mano
-			this.getGiocatore2().write((new Packet(Evento.subisci, cartaGiocata, this.mazzo.pesca(2))));
+			ArrayList<Carta> pescate = this.mazzo.pesca(2);
+			this.getGiocatore2().getMano().aggiungiCarte(pescate);
+			this.getGiocatore2().write((new Packet(Evento.subisci, cartaGiocata, pescate)));
 			break;
 		case Piu4:
-			//TODO: manca l'update della mano
-			this.getGiocatore2().write((new Packet(Evento.subisci, cartaGiocata, this.mazzo.pesca(4))));
+			ArrayList<Carta> pescate4 = this.mazzo.pesca(4);
+			this.getGiocatore2().getMano().aggiungiCarte(pescate4);
+			this.getGiocatore2().write((new Packet(Evento.subisci, cartaGiocata, pescate4)));
 			break;
 		default:
 			break;
@@ -140,6 +142,7 @@ public class ServerMatch extends Thread{
 	
 	private void giocatorePesca() throws Exception {
 		Carta pescata = this.mazzo.pesca();
+		this.getGiocatore1().getMano().aggiungiCarta(pescata);
 		this.getGiocatore1().write((new Packet(Evento.okPlay, pescata)));
 		this.getGiocatore2().write((new Packet(Evento.pesco)));
 	}

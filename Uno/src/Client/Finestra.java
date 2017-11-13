@@ -31,6 +31,8 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Finestra extends JFrame {
 
@@ -79,6 +81,12 @@ public class Finestra extends JFrame {
 		contentPane.add(lblInAttesaDella);
 		
 		mazzo = new Card();
+		mazzo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Controller.pesca();
+			}
+		});
 		mazzo.setBounds(564, 169, 87, 106);
 		contentPane.add(mazzo);
 		contentPane.add(scrollPane_mano);
