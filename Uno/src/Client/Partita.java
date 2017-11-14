@@ -101,7 +101,7 @@ public class Partita extends Thread {
 		grt.isGameOn = false; 
 		giocatore.getIrb().hasError = true;
 		//Mostro la vittoria
-		JOptionPane.showMessageDialog(f, "HAI VINTO!", "La partita e' finita!", JOptionPane.WARNING_MESSAGE);
+		new WinDialog();
 		f.dispose();
 		System.exit(0);
 	}
