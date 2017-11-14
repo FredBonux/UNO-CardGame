@@ -30,6 +30,11 @@ public class Controller {
 		
 		System.out.println("Tento di giocare: " + c.getCarta().getTipoCarta());
 		
+		if(giocataCartaControl(c.getCarta()) == false) {
+			JOptionPane.showMessageDialog(fin,"Questa carta non puo' essere giocata!");
+			return;
+		}
+		
 		if(c.getCarta().getTipoCarta()==TipoCarta.Piu4 || c.getCarta().getTipoCarta()==TipoCarta.CambioColore){ 			//carte speciali
 			fin.setEnabled(false);
 			FinestraColore fc = new FinestraColore();
@@ -44,7 +49,7 @@ public class Controller {
 			}else {
 				JOptionPane.showMessageDialog(fin,"SERVER: Questa carta non puo' essere giocata!");
 			}
-		}else if(c.getCarta().getColoreCarta() == carta_tavolo.getCarta().getColoreCarta() || (c.getCarta().getNumeroCarta() == carta_tavolo.getCarta().getNumeroCarta() && carta_tavolo.getCarta().getNumeroCarta() > -1)){		//controllo colore e numero
+		}else {		//controllo colore e numero
 			if(giocaNonSpeciale(c)) {
 				if(TipoCarta.Piu2 == c.getCarta().getTipoCarta()) 
 					for(int i = 0; i < 2; i++) avversarioPesca();
@@ -57,9 +62,34 @@ public class Controller {
 				JOptionPane.showMessageDialog(fin,"SERVER: Questa carta non puo' essere giocata!");
 			}
 		}
-		else {
-			JOptionPane.showMessageDialog(fin,"Questa carta non puo' essere giocata!");
+	}
+	
+	private static boolean giocataCartaControl(Carta c) {
+		
+		Carta pop = carta_tavolo.getCarta();	//leggo ultima carta del tavolo 
+		
+		if(c.getTipoCarta()==TipoCarta.Piu4 || c.getTipoCarta()==TipoCarta.CambioColore){ 					//carte speciali
+			return true;
 		}
+		
+		if(c.getTipoCarta()==TipoCarta.Piu2 &&(pop.getColoreCarta()==c.getColoreCarta() || pop.getTipoCarta()==c.getTipoCarta())){	//carte speciali
+			return true;
+		}
+		
+		
+		if(c.getTipoCarta()==TipoCarta.CambioGiro &&(pop.getColoreCarta()==c.getColoreCarta() || pop.getTipoCarta()==c.getTipoCarta())){	//carte speciali
+			return true;
+		}
+		
+		if(c.getTipoCarta()==TipoCarta.Stop &&(pop.getColoreCarta()==c.getColoreCarta() || pop.getTipoCarta()==c.getTipoCarta())){	//carte speciali
+			return true;
+		}
+		
+		if(c.getColoreCarta() == pop.getColoreCarta() || c.getNumeroCarta() == pop.getNumeroCarta()){		//controllo colore e numero
+			return true; 
+		}
+		
+		return false;
 	}
 	
 	private static void rimuoviDaMano(Card c) {
