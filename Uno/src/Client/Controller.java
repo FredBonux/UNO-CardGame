@@ -16,7 +16,7 @@ import Utility.Evento;
 import Utility.Giocatore;
 import Utility.Packet;
 
-public class Controller {
+public class Controller{
 	
 	static Finestra fin;
 	static Card carta_tavolo;
@@ -162,6 +162,9 @@ public class Controller {
 		fin.getPanel_mano_avv().remove(0);
 	}
 	
+	static void unoUno(){
+		//
+	}
 	static void pesca() {
 		try {
 			giocatore.write(new Packet(Evento.pesco));

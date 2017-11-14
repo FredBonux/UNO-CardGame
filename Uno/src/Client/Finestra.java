@@ -33,6 +33,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
 
 public class Finestra extends JFrame {
 
@@ -46,6 +47,7 @@ public class Finestra extends JFrame {
 	private JButton btnUno;
 	private Card card;
 	private JPanel sfondoCarta;
+	private static boolean uno = false;
 	
 	private Giocatore giocatore;
 	private JLabel lblInAttesaDella;
@@ -149,8 +151,7 @@ public class Finestra extends JFrame {
 			
 		} catch (IOException e) {
 			
-		}
-		
+		}	
 	}
 	
 	public JPanel getSfondoCarta() {
@@ -182,6 +183,19 @@ public class Finestra extends JFrame {
 	public JPanel getPanel_mano() {
 		return panel_mano;
 	}
+
+	public JButton getBtnUno() {
+		return btnUno;
+	}
 	
-	
+	public void actionPerformed(ActionEvent evt) {
+		if(evt.getSource()==this.getBtnUno()){
+			uno = true;
+		}
+	}
+
+	public static boolean isUno() {
+		return uno;
+	}
+
 }
