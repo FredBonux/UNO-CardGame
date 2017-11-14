@@ -20,16 +20,29 @@ public class Tavolo {
 	}
 	
 	public boolean pushToTavoloControl(Carta c){
-		if(tavolo.isEmpty()){
+		
+		if(tavolo.isEmpty()){						//ogni carta vale
 			return true;
 		}
-		Carta pop = tavolo.peek();
-		if(c.getTipoCarta()==TipoCarta.Piu4 || c.getTipoCarta()==TipoCarta.CambioColore){ 			//carte speciali
+		
+		Carta pop = tavolo.peek();					//leggo ultima carta del tavolo 
+		
+		if(c.getTipoCarta()==TipoCarta.Piu4 || c.getTipoCarta()==TipoCarta.CambioColore){ 					//carte speciali
 			return true;
 		}
+		
+		if(c.getTipoCarta()==TipoCarta.CambioGiro && pop.getColoreCarta()==c.getColoreCarta()){				//carte speciali
+			return true;
+		}
+		
+		if(c.getTipoCarta()==TipoCarta.Stop && pop.getColoreCarta()==c.getColoreCarta()){					//carte speciali
+			return true;
+		}
+		
 		if(c.getColoreCarta() == pop.getColoreCarta() || c.getNumeroCarta() == pop.getNumeroCarta()){		//controllo colore e numero
 			return true; 
 		}
+		
 		return false;
 	}
 	
