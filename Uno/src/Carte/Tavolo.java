@@ -27,6 +27,7 @@ public class Tavolo {
 		
 		Carta pop = tavolo.peek();					//leggo ultima carta del tavolo 
 		
+		if (c.getTipoCarta()!=TipoCarta.Normale){
 		if(c.getTipoCarta()==TipoCarta.Piu4 || c.getTipoCarta()==TipoCarta.CambioColore){ 					//carte speciali
 			return true;
 		}
@@ -44,10 +45,11 @@ public class Tavolo {
 			return true;
 		}
 		
+		}else{		
 		if(c.getColoreCarta() == pop.getColoreCarta() || c.getNumeroCarta() == pop.getNumeroCarta()){		//controllo colore e numero
 			return true; 
 		}
-		
+		}
 		return false;
 	}
 	
