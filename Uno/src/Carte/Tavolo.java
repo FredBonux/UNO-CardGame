@@ -31,11 +31,16 @@ public class Tavolo {
 			return true;
 		}
 		
-		if(c.getTipoCarta()==TipoCarta.CambioGiro && pop.getColoreCarta()==c.getColoreCarta()){				//carte speciali
+		if(c.getTipoCarta()==TipoCarta.Piu2 &&(pop.getColoreCarta()==c.getColoreCarta() || pop.getTipoCarta()==c.getTipoCarta())){	//carte speciali
 			return true;
 		}
 		
-		if(c.getTipoCarta()==TipoCarta.Stop && pop.getColoreCarta()==c.getColoreCarta()){					//carte speciali
+		
+		if(c.getTipoCarta()==TipoCarta.CambioGiro &&(pop.getColoreCarta()==c.getColoreCarta() || pop.getTipoCarta()==c.getTipoCarta())){	//carte speciali
+			return true;
+		}
+		
+		if(c.getTipoCarta()==TipoCarta.Stop &&(pop.getColoreCarta()==c.getColoreCarta() || pop.getTipoCarta()==c.getTipoCarta())){	//carte speciali
 			return true;
 		}
 		
