@@ -6,6 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.Semaphore;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -15,6 +20,8 @@ import Carte.TipoCarta;
 import Utility.Evento;
 import Utility.Giocatore;
 import Utility.Packet;
+import sun.audio.*;
+import  java.io.*;
 
 public class Controller {
 	
@@ -36,6 +43,22 @@ public class Controller {
 		}
 		
 		if(c.getCarta().getTipoCarta()==TipoCarta.Piu4 || c.getCarta().getTipoCarta()==TipoCarta.CambioColore){ 			//carte speciali
+			try {
+		         // Open an audio input stream.           
+		          File soundFile = new File("./snd/carta.wav"); //you could also get the sound file with an URL
+		          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
+		         // Get a sound clip resource.
+		         Clip clip = AudioSystem.getClip();
+		         // Open audio clip and load samples from the audio input stream.
+		         clip.open(audioIn);
+		         clip.start();
+		      } catch (UnsupportedAudioFileException e) {
+		         e.printStackTrace();
+		      } catch (IOException e) {
+		         e.printStackTrace();
+		      } catch (LineUnavailableException e) {
+		         e.printStackTrace();
+		      }
 			fin.setEnabled(false);
 			FinestraColore fc = new FinestraColore();
 			fin.setEnabled(true);
@@ -51,6 +74,22 @@ public class Controller {
 			}
 		}else {		//controllo colore e numero
 			if(giocaNonSpeciale(c)) {
+				try {
+			         // Open an audio input stream.           
+			          File soundFile = new File("./snd/carta.wav"); //you could also get the sound file with an URL
+			          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
+			         // Get a sound clip resource.
+			         Clip clip = AudioSystem.getClip();
+			         // Open audio clip and load samples from the audio input stream.
+			         clip.open(audioIn);
+			         clip.start();
+			      } catch (UnsupportedAudioFileException e) {
+			         e.printStackTrace();
+			      } catch (IOException e) {
+			         e.printStackTrace();
+			      } catch (LineUnavailableException e) {
+			         e.printStackTrace();
+			      }
 				if(TipoCarta.Piu2 == c.getCarta().getTipoCarta()) 
 					for(int i = 0; i < 2; i++) avversarioPesca();
 				cleanSfondoCarta();

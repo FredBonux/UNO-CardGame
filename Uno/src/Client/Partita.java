@@ -1,10 +1,16 @@
 package Client;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 
 import Carte.Mano;
@@ -39,6 +45,22 @@ public class Partita extends Thread {
 			Controller.setFinestra(f);
 			Controller.setCartaTavolo(p.getCartaSubita());
 			grt = new GameReadThread(this);
+			try {
+		         // Open an audio input stream.           
+		          File soundFile = new File("./snd/inizio.wav"); //you could also get the sound file with an URL
+		          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
+		         // Get a sound clip resource.
+		         Clip clip = AudioSystem.getClip();
+		         // Open audio clip and load samples from the audio input stream.
+		         clip.open(audioIn);
+		         clip.start();
+		      } catch (UnsupportedAudioFileException e) {
+		         e.printStackTrace();
+		      } catch (IOException e) {
+		         e.printStackTrace();
+		      } catch (LineUnavailableException e) {
+		         e.printStackTrace();
+		      }
 			
 			
 		} catch (Exception e) {
@@ -85,6 +107,22 @@ public class Partita extends Thread {
 	}
 
 	public void subisci(Packet p) {
+		try {
+	         // Open an audio input stream.           
+	          File soundFile = new File("./snd/carta.wav"); //you could also get the sound file with an URL
+	          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
+	         // Get a sound clip resource.
+	         Clip clip = AudioSystem.getClip();
+	         // Open audio clip and load samples from the audio input stream.
+	         clip.open(audioIn);
+	         clip.start();
+	      } catch (UnsupportedAudioFileException e) {
+	         e.printStackTrace();
+	      } catch (IOException e) {
+	         e.printStackTrace();
+	      } catch (LineUnavailableException e) {
+	         e.printStackTrace();
+	      }
 		Controller.setCartaTavolo(p.getCartaSubita());
 		Controller.avversarioGioca();
 		switch (p.getCartaSubita().getTipoCarta()) {
