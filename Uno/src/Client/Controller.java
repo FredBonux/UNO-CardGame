@@ -43,22 +43,6 @@ public class Controller{
 		}
 		
 		if(c.getCarta().getTipoCarta()==TipoCarta.Piu4 || c.getCarta().getTipoCarta()==TipoCarta.CambioColore){ 			//carte speciali
-			try {
-		         // Open an audio input stream.           
-		          File soundFile = new File("./snd/carta.wav"); //you could also get the sound file with an URL
-		          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
-		         // Get a sound clip resource.
-		         Clip clip = AudioSystem.getClip();
-		         // Open audio clip and load samples from the audio input stream.
-		         clip.open(audioIn);
-		         clip.start();
-		      } catch (UnsupportedAudioFileException e) {
-		         e.printStackTrace();
-		      } catch (IOException e) {
-		         e.printStackTrace();
-		      } catch (LineUnavailableException e) {
-		         e.printStackTrace();
-		      }
 			fin.setEnabled(false);
 			FinestraColore fc = new FinestraColore();
 			fin.setEnabled(true);
@@ -69,6 +53,22 @@ public class Controller{
 				rimuoviDaMano(c);
 				setCartaTavolo(c.getCarta());
 				//partita.disableView();
+				try {
+			         // Open an audio input stream.           
+			          File soundFile = new File("./snd/carta.wav"); //you could also get the sound file with an URL
+			          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
+			         // Get a sound clip resource.
+			         Clip clip = AudioSystem.getClip();
+			         // Open audio clip and load samples from the audio input stream.
+			         clip.open(audioIn);
+			         clip.start();
+			      } catch (UnsupportedAudioFileException e) {
+			         e.printStackTrace();
+			      } catch (IOException e) {
+			         e.printStackTrace();
+			      } catch (LineUnavailableException e) {
+			         e.printStackTrace();
+			      }
 			}else {
 				JOptionPane.showMessageDialog(fin,"SERVER: Questa carta non puo' essere giocata!");
 			}
@@ -214,6 +214,22 @@ public class Controller{
 			if(lastCheck) {
 				
 			}
+			try {
+		         // Open an audio input stream.           
+		          File soundFile = new File("./snd/carta.wav"); //you could also get the sound file with an URL
+		          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
+		         // Get a sound clip resource.
+		         Clip clip = AudioSystem.getClip();
+		         // Open audio clip and load samples from the audio input stream.
+		         clip.open(audioIn);
+		         clip.start();
+		      } catch (UnsupportedAudioFileException e) {
+		         e.printStackTrace();
+		      } catch (IOException e) {
+		         e.printStackTrace();
+		      } catch (LineUnavailableException e) {
+		         e.printStackTrace();
+		      }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
