@@ -117,7 +117,7 @@ public class StartView extends JFrame {
 			});
 			btnNewButton_1.setFont(new Font("Lucida Grande", Font.BOLD, 15));
 			btnNewButton_1.setBounds(130, 164, 190, 96);
-			btnNewButton_1.setBackground(new Color(255, 255, 255, 100));
+			btnNewButton_1.setBackground(new Color(255, 255, 255));
 			contentPane.add(btnNewButton_1);
 			
 			btnX = new JButton("X");
