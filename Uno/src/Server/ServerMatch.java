@@ -97,9 +97,13 @@ public class ServerMatch extends Thread{
 		switch (this.lastGiocata.getEvento()) {
 		case butto:
 			Carta c = this.lastGiocata.getCartaSubita();
-			
+			if(!this.getGiocatore1().checkUno(this.lastGiocata)) {
+				this.getGiocatore1().write(new Packet(Evento.penalita, null, mazzo.pesca(2)));
+				this.getGiocatore2().write(new Packet(Evento.pesco));
+				this.getGiocatore2().write(new Packet(Evento.pesco));
+			}
 			if(!this.tavolo.pushToTavoloControl(c)) return false; //Controllo sul tavolo
-			if(!this.getGiocatore1().hasCarta(c)) return false; //Controllo sulla mano del giocatore 1
+			if(!this.getGiocatore1().hasCarta(c) || !this.getGiocatore1().controllaLastCarta(c)) return false; //Controllo sulla mano del giocatore 1
 			else return true;
 		case pesco:
 			return true;

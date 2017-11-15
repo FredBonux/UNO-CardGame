@@ -11,5 +11,6 @@ public enum Evento {
 	mano, //Inviato insiame alla mano iniziale
 	badPlay, //Inviato al client che ha fatto una giocata scorretta
 	okPlay, //Inviato al client per confermare la giocata
-	connessione //Inviato al client alla connessione al server
+	connessione, //Inviato al client alla connessione al server
+	penalita //Inviato al client che commette un errore con penalita'
 }

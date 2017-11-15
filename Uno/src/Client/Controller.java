@@ -201,9 +201,16 @@ public class Controller{
 		fin.getPanel_mano_avv().remove(0);
 	}
 	
-	static void unoUno(){
-		//
+	static void penalita(Packet p) {
+		for(int i = 0; i < p.getCarte().size(); i++) {
+			Carta c = p.getCarte().get(i);
+			giocatore.getMano().aggiungiCarta(c);
+			fin.getPanel_mano().add(new Card(c));
+		}
+		//Mostro un dialog
+		JOptionPane.showMessageDialog(fin, "Hai subito una penalita'", "Ahi!", JOptionPane.ERROR_MESSAGE);
 	}
+	
 	static void pesca() {
 		try {
 			giocatore.write(new Packet(Evento.pesco));

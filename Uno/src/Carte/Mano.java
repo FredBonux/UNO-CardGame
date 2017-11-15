@@ -44,16 +44,4 @@ public class Mano {
 		}
 		return -1;
 	}
-	
-	public boolean uno(){
-		
-		if(Finestra.isUno()){
-			if(carte.size()==2)
-				return true;
-			else
-				return false;
-		}else{
-			return false;
-		}
-	}
 }

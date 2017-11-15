@@ -47,7 +47,6 @@ public class Finestra extends JFrame {
 	private JButton btnUno;
 	private Card card;
 	private JPanel sfondoCarta;
-	private static boolean uno = false;
 	
 	private Giocatore giocatore;
 	private JLabel lblInAttesaDella;
@@ -186,16 +185,6 @@ public class Finestra extends JFrame {
 
 	public JButton getBtnUno() {
 		return btnUno;
-	}
-	
-	public void actionPerformed(ActionEvent evt) {
-		if(evt.getSource()==this.getBtnUno()){
-			uno = true;
-		}
-	}
-
-	public static boolean isUno() {
-		return uno;
 	}
 
 }

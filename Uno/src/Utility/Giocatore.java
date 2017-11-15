@@ -7,6 +7,7 @@ import java.net.Socket;
 
 import Carte.Carta;
 import Carte.Mano;
+import Carte.TipoCarta;
 
 public class Giocatore {
 	private Socket socket;
@@ -87,6 +88,18 @@ public class Giocatore {
 	
 	public InputReadBuffered getIrb() {
 		return this.irb;
+	}
+	
+	public boolean controllaLastCarta(Carta c) {
+		if(this.mano.getMano().size() > 1) return true;
+		if(c.getTipoCarta() != TipoCarta.Normale) return false;
+		return true;
+	}
+	
+	public boolean checkUno(Packet p) {
+		if(mano.getMano().size() > 2) return true;
+		if(p.isUnoCalled()) return true;
+		return false;
 	}
 	
 	

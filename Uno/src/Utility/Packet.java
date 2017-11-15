@@ -10,12 +10,14 @@ public class Packet implements Serializable{
 	private final Evento evento; //tipo di evento inviato via socket
 	private final Carta cartaSubita;
 	private final ArrayList<Carta> carte; //Alcuni eventi inviano una o piu carte
+	private final boolean unoCalled;
 	
 	//Costruttore per gli eventi base (quelli che non hanno a che fare con le carte)
 	public Packet(Evento tipoEvento) {
 		this.evento = tipoEvento;
 		this.cartaSubita = null;
 		this.carte = null;
+		this.unoCalled = false;
 	}
 	
 	//Costruttore per gli eventi con carta
@@ -23,6 +25,7 @@ public class Packet implements Serializable{
 		this.evento = tipoEvento;
 		this.carte = carte;
 		this.cartaSubita = cartaSubita;
+		this.unoCalled = false;
 	}
 	
 	//Costruttore per eventi con una carta solo
@@ -30,6 +33,14 @@ public class Packet implements Serializable{
 		this.evento = tipoEvento;
 		this.carte = null;
 		this.cartaSubita = c;
+		this.unoCalled = false;
+	}
+	
+	public Packet(Evento tipoEvento, Carta c, boolean isUno) {
+		this.evento = tipoEvento;
+		this.carte = null;
+		this.cartaSubita = c;
+		this.unoCalled = isUno;
 	}
 	
 	public Evento getEvento() {
@@ -43,6 +54,10 @@ public class Packet implements Serializable{
 	public Carta getCartaSubita() {
 		return this.cartaSubita;
 	};
+	
+	public boolean isUnoCalled() {
+		return this.unoCalled;
+	}
 	
 	
 }

@@ -49,6 +49,8 @@ public class GameReadThread extends Thread{
 						Controller.lastPacket = p;
 						Controller.lastCheck = false;
 						Controller.playCheckSemaphore.release();
+					case penalita:
+						Controller.penalita(p);
 					default: 
 						System.out.println("ERRORE: " + p.getEvento());
 						break;
