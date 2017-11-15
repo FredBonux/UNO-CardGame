@@ -41,9 +41,9 @@ public class GameReadThread extends Thread{
 						partita.win();
 						break;
 					case okPlay:
+						Controller.lastPacket = p;
 						Controller.lastCheck = true;
 						Controller.playCheckSemaphore.release();
-						Controller.lastPacket = p;
 						break;
 					case badPlay: 
 						Controller.lastPacket = p;
