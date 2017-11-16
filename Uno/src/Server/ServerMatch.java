@@ -98,7 +98,9 @@ public class ServerMatch extends Thread{
 		case butto:
 			Carta c = this.lastGiocata.getCartaSubita();
 			if(!this.getGiocatore1().checkUno(this.lastGiocata)) {
-				this.getGiocatore1().write(new Packet(Evento.penalita, null, mazzo.pesca(2)));
+				ArrayList<Carta> app = mazzo.pesca(2);
+				this.getGiocatore1().getMano().aggiungiCarte(app);
+				this.getGiocatore1().write(new Packet(Evento.penalita, null, app));
 				this.getGiocatore2().write(new Packet(Evento.pesco));
 				this.getGiocatore2().write(new Packet(Evento.pesco));
 			}

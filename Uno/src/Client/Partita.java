@@ -62,6 +62,8 @@ public class Partita extends Thread {
 		         e.printStackTrace();
 		      }
 			
+			playSong();
+			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -194,6 +196,26 @@ public class Partita extends Thread {
 	
 	public InputReadBuffered getIrb() {
 		return this.giocatore.getIrb();
+	}
+	
+	private void playSong() {
+		try {
+	         // Open an audio input stream.           
+	          File soundFile = new File("./snd/canzone.wav"); //you could also get the sound file with an URL
+	          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
+	         // Get a sound clip resource.
+	         Clip clip = AudioSystem.getClip();
+	         // Open audio clip and load samples from the audio input stream.
+	         clip.open(audioIn);
+	         clip.loop(Clip.LOOP_CONTINUOUSLY);
+	      } catch (UnsupportedAudioFileException e) {
+	         e.printStackTrace();
+	      } catch (IOException e) {
+	         e.printStackTrace();
+	      } catch (LineUnavailableException e) {
+	         e.printStackTrace();
+	      }
+		
 	}
 	
 }

@@ -32,6 +32,8 @@ public class Controller{
 	static Semaphore playCheckSemaphore = new Semaphore(0);
 	static boolean lastCheck = false;
 	static Packet lastPacket;
+	static boolean hasPenality = false;
+	static boolean unoCalled = false;
 	
 	static void giocaCarta (Card c) {
 		
@@ -154,7 +156,11 @@ public class Controller{
 	
 	private static boolean giocaNonSpeciale(Card c) {
 		try {
-			giocatore.write(new Packet(Evento.butto, c.getCarta()));
+			if(giocatore.getMano().getMano().size() < 3) {
+				giocatore.write(new Packet(Evento.butto, c.getCarta(), unoCalled));
+				unoCalled = false;
+			}else
+				giocatore.write(new Packet(Evento.butto, c.getCarta()));
 			playCheckSemaphore.acquire();
 			return (lastCheck) ? true : false;
 		} catch(Exception ex) {
@@ -207,8 +213,7 @@ public class Controller{
 			giocatore.getMano().aggiungiCarta(c);
 			fin.getPanel_mano().add(new Card(c));
 		}
-		//Mostro un dialog
-		JOptionPane.showMessageDialog(fin, "Hai subito una penalita'", "Ahi!", JOptionPane.ERROR_MESSAGE);
+		Controller.hasPenality = true;
 	}
 	
 	static void pesca() {
