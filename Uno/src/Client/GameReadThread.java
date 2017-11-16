@@ -1,5 +1,7 @@
 package Client;
 
+import javax.swing.JOptionPane;
+
 import Utility.Evento;
 import Utility.InputReadBuffered;
 import Utility.Packet;
@@ -23,6 +25,10 @@ public class GameReadThread extends Thread{
 				if(p != null) {
 					switch (p.getEvento()) {
 					case turno:
+						if(Controller.hasPenality) {
+							JOptionPane.showMessageDialog(null, "Hai subito una penalita'!", "AHI!", JOptionPane.ERROR_MESSAGE);
+							Controller.hasPenality = false;
+						}
 						partita.myTurn();
 						break;
 					case aspetta:
@@ -49,8 +55,10 @@ public class GameReadThread extends Thread{
 						Controller.lastPacket = p;
 						Controller.lastCheck = false;
 						Controller.playCheckSemaphore.release();
+						break;
 					case penalita:
 						Controller.penalita(p);
+						break;
 					default: 
 						System.out.println("ERRORE: " + p.getEvento());
 						break;
