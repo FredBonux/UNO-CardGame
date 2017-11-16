@@ -77,8 +77,6 @@ public class Controller{
 			}
 		}else {		//controllo colore e numero
 			if(giocaNonSpeciale(c)) {
-				int b=giocatore.getMano().getMano().size();
-				System.out.println("ddddd"+b);
 				try {
 			         // Open an audio input stream.           
 			          File soundFile = new File("./snd/carta.wav"); //you could also get the sound file with an URL
@@ -138,14 +136,8 @@ public class Controller{
 		return false;
 	}
 	
-	private static void rimuoviDaMano(Card c) {
-		Container parent = c.getParent();
-		parent.remove(c);
-		parent.validate();
-		parent.repaint();
-		int cont = giocatore.getMano().findCarta(c.getCarta());
-		giocatore.getMano().removeByIndex(cont);
-		if(giocatore.getMano().getMano().size()<3){
+	private static void attivazioneBtnUno(){
+											//attivazione bottone uno
 			fin.getBtnUno().setEnabled(true);
 			fin.getBtnUno().addActionListener(new ActionListener() {
 				
@@ -155,6 +147,21 @@ public class Controller{
 					unoCalled = true;
 				}
 			});
+	}
+	private static void rimuoviDaMano(Card c) {
+		Container parent = c.getParent();
+		parent.remove(c);
+		parent.validate();
+		parent.repaint();
+		
+		int cont = giocatore.getMano().findCarta(c.getCarta());						//index della carta
+		giocatore.getMano().removeByIndex(cont);
+		if(giocatore.getMano().getMano().size() == 2){
+			attivazioneBtnUno();
+		}
+		 else {
+			fin.getBtnUno().setEnabled(false);
+			unoCalled = false;
 		}
 	}
 	
@@ -241,6 +248,12 @@ public class Controller{
 			Carta pescata = lastPacket.getCartaSubita();
 			giocatore.getMano().aggiungiCarta(pescata);
 			fin.getPanel_mano().add(new Card(pescata));
+			if(giocatore.getMano().getMano().size()!=2){
+				unoCalled = false;
+				fin.getBtnUno().setEnabled(false);
+			} else {
+				attivazioneBtnUno();
+			}
 			if(lastCheck) {
 				
 			}
