@@ -9,6 +9,9 @@ import java.net.Socket;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
@@ -24,6 +27,7 @@ public class Partita extends Thread {
 	public static boolean isGame = true;
 	private Finestra f;
 	private GameReadThread grt;
+	private Clip mainClip;
 	
 	public Partita(Socket connection) throws IOException, ClassNotFoundException {
 		System.out.println("Carico le risorse");
@@ -153,7 +157,7 @@ public class Partita extends Thread {
 		grt.isGameOn = false; 
 		giocatore.getIrb().hasError = true;
 		//Mostro la vittoria
-		JOptionPane.showMessageDialog(f, "HAI PERSO!", "La partita e' finita!", JOptionPane.WARNING_MESSAGE);
+		new LoseDialog();
 		f.dispose();
 		System.exit(0);
 	}
@@ -204,18 +208,16 @@ public class Partita extends Thread {
 	          File soundFile = new File("./snd/canzone.wav"); //you could also get the sound file with an URL
 	          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
 	         // Get a sound clip resource.
-	         Clip clip = AudioSystem.getClip();
+	         mainClip = AudioSystem.getClip();
 	         // Open audio clip and load samples from the audio input stream.
-	         clip.open(audioIn);
-	         clip.loop(Clip.LOOP_CONTINUOUSLY);
+	         mainClip.open(audioIn);
+	         mainClip.loop(Clip.LOOP_CONTINUOUSLY);
 	      } catch (UnsupportedAudioFileException e) {
 	         e.printStackTrace();
 	      } catch (IOException e) {
 	         e.printStackTrace();
 	      } catch (LineUnavailableException e) {
 	         e.printStackTrace();
-	      }
-		
+	      }	
 	}
-	
 }
