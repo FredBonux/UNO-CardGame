@@ -23,7 +23,7 @@ import Utility.Packet;
 import sun.audio.*;
 import  java.io.*;
 
-public class Controller{
+public class Controller implements ActionListener{
 	
 	static Finestra fin;
 	static Card carta_tavolo;
@@ -33,8 +33,8 @@ public class Controller{
 	static boolean lastCheck = false;
 	static Packet lastPacket;
 	
+	
 	static void giocaCarta (Card c) {
-		
 		System.out.println("Tento di giocare: " + c.getCarta().getTipoCarta());
 		
 		if(giocataCartaControl(c.getCarta()) == false) {
@@ -52,6 +52,7 @@ public class Controller{
 					for(int i = 0; i < 4; i++) avversarioPesca();
 				rimuoviDaMano(c);
 				setCartaTavolo(c.getCarta());
+				
 				//partita.disableView();
 				try {
 			         // Open an audio input stream.           
@@ -74,6 +75,8 @@ public class Controller{
 			}
 		}else {		//controllo colore e numero
 			if(giocaNonSpeciale(c)) {
+				int b=giocatore.getMano().getMano().size();
+				System.out.println("ddddd"+b);
 				try {
 			         // Open an audio input stream.           
 			          File soundFile = new File("./snd/carta.wav"); //you could also get the sound file with an URL
@@ -96,6 +99,8 @@ public class Controller{
 				rimuoviDaMano(c);
 				setCartaTavolo(c.getCarta());
 				System.out.println("SETTATA");
+
+				
 				//partita.disableView();
 			}else {
 				JOptionPane.showMessageDialog(fin,"SERVER: Questa carta non puo' essere giocata!");
@@ -136,6 +141,19 @@ public class Controller{
 		parent.remove(c);
 		parent.validate();
 		parent.repaint();
+		int cont = giocatore.getMano().findCarta(c.getCarta());
+		giocatore.getMano().removeByIndex(cont);
+		if(giocatore.getMano().getMano().size()<3){
+			fin.getBtnUno().setEnabled(true);
+			fin.getBtnUno().addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					unoCalled = true;
+				}
+			});
+		}
 	}
 	
 	private static void cleanSfondoCarta() {
