@@ -23,7 +23,7 @@ import Utility.Packet;
 import sun.audio.*;
 import  java.io.*;
 
-public class Controller implements ActionListener{
+public class Controller{
 	
 	static Finestra fin;
 	static Card carta_tavolo;
