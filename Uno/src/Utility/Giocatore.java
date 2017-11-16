@@ -97,7 +97,7 @@ public class Giocatore {
 	}
 	
 	public boolean checkUno(Packet p) {
-		if(mano.getMano().size() > 2) return true;
+		if(mano.getMano().size() != 2) return true;
 		if(p.isUnoCalled()) return true;
 		return false;
 	}
