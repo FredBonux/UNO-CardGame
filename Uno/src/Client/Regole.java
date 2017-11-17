@@ -38,14 +38,8 @@ public class Regole extends JFrame {
 
 
 	public Regole(StartView s) {
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosed(WindowEvent arg0) {
-				
-			}
-		});
 		setTitle("Tutorial");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 583, 451);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -70,7 +64,7 @@ public class Regole extends JFrame {
 		lblCarte.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				txtpn.setText("19 carte di colore Blu che vanno dall' 1 al 9 (2 serie) più uno 0 \n19 carte di colore Rosso che vanno dall 1 al 9 (2 serie) più uno 0 \n19 carte di colore Verde che vanno dall 1 al 9 (2 serie) più uno 0 \n19 carte di colore Giallo che vanno dall 1 al 9 (2 serie) più uno 0\n8 carte Pesca Due dei quattro colori sopracitati \n8 carte Inverti o Cambio giro dei quattro colori sopracitati \n8 carte Salta o Stop dei quattro colori sopracitati \n4 carte Jolly o Cambio colore\n4 carte Jolly Pesca Quattro o Cambio colore - Pesca quattro\n4 carte bianche (utilizzabili in caso di smarrimento di una o più carte del mazzo");
+				txtpn.setText("19 carte di colore Blu che vanno dall' 1 al 9 (2 serie) piï¿½ uno 0 \n19 carte di colore Rosso che vanno dall 1 al 9 (2 serie) piï¿½ uno 0 \n19 carte di colore Verde che vanno dall 1 al 9 (2 serie) piï¿½ uno 0 \n19 carte di colore Giallo che vanno dall 1 al 9 (2 serie) piï¿½ uno 0\n8 carte Pesca Due dei quattro colori sopracitati \n8 carte Inverti o Cambio giro dei quattro colori sopracitati \n8 carte Salta o Stop dei quattro colori sopracitati \n4 carte Jolly o Cambio colore\n4 carte Jolly Pesca Quattro o Cambio colore - Pesca quattro\n4 carte bianche (utilizzabili in caso di smarrimento di una o piï¿½ carte del mazzo");
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -85,7 +79,7 @@ public class Regole extends JFrame {
 		lblProcedimento.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				txtpn.setText("Il giocatore comincia il gioco  questi deve scartare una carta dalle proprie a disposizione, compatibile con quella in cima al mazzo scarti per colore o per numero. Ciò significa che la carta deve avere colore o numero uguale alla prima carta sul banco. Alternativamente, il giocatore può usare una carta Azione . Non è possibile scartare più di una carta per turno.\n\n\n Se il giocatore non ha a disposizione carte da scartare, ha l'obbligo di pescarne una dal mazzo pesca .Il giocatore ha l'obbligo di tirare una carta in suo possesso, se compatibile con quella che si trova sul mazzo scarti. \n\n\nQuando un giocatore scarta una delle sue due carte rimaste così rimanendo con una sola carta in mano, deve pronunciare \"UNO\".");
+				txtpn.setText("Il giocatore comincia il gioco  questi deve scartare una carta dalle proprie a disposizione, compatibile con quella in cima al mazzo scarti per colore o per numero. Ciï¿½ significa che la carta deve avere colore o numero uguale alla prima carta sul banco. Alternativamente, il giocatore puï¿½ usare una carta Azione . Non ï¿½ possibile scartare piï¿½ di una carta per turno.\n\n\n Se il giocatore non ha a disposizione carte da scartare, ha l'obbligo di pescarne una dal mazzo pesca .Il giocatore ha l'obbligo di tirare una carta in suo possesso, se compatibile con quella che si trova sul mazzo scarti. \n\n\nQuando un giocatore scarta una delle sue due carte rimaste cosï¿½ rimanendo con una sola carta in mano, deve pronunciare \"UNO\".");
 			}
 			
 			@Override
@@ -101,7 +95,7 @@ public class Regole extends JFrame {
 		lblCarteSpeciali.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				txtpn.setText("Carta Inverti o Cambio giro: La carta Inverti ha lo stesso valore della carta Salta.\n\nCarta Salta: fa saltare un turno al giocatore successivo nel senso del gioco.\n\nCarta Pesca due carte: il giocatore successivo nel senso del gioco pesca due carte e salta il turno.\n\nCarta Jolly o Cambio colore: permette al giocatore di scegliere uno tra i quattro colori disponibili . Può essere giocata in qualsiasi momento e su qualsiasi carta, \n\n Carta Jolly: Costringe il giocatore successivo nel senso del gioco a pescare quattro carte ed a saltare il turno. La carta in questione consente, inoltre, a chi l'ha giocata di cambiare il colore del gioco. ");
+				txtpn.setText("Carta Inverti o Cambio giro: La carta Inverti ha lo stesso valore della carta Salta.\n\nCarta Salta: fa saltare un turno al giocatore successivo nel senso del gioco.\n\nCarta Pesca due carte: il giocatore successivo nel senso del gioco pesca due carte e salta il turno.\n\nCarta Jolly o Cambio colore: permette al giocatore di scegliere uno tra i quattro colori disponibili . Puï¿½ essere giocata in qualsiasi momento e su qualsiasi carta, \n\n Carta Jolly: Costringe il giocatore successivo nel senso del gioco a pescare quattro carte ed a saltare il turno. La carta in questione consente, inoltre, a chi l'ha giocata di cambiare il colore del gioco. ");
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -117,7 +111,7 @@ public class Regole extends JFrame {
 		lblPenalita.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				txtpn.setText("Se ci si dimentica di esclamare \"UNO!\" quando si scarta la penultima carta e la cosa viene notificata da un altro giocatore, si devono pescare 2 carte di penalità dal mazzo pesca.");
+				txtpn.setText("Se ci si dimentica di esclamare \"UNO!\" quando si scarta la penultima carta e la cosa viene notificata da un altro giocatore, si devono pescare 2 carte di penalitï¿½ dal mazzo pesca.");
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
