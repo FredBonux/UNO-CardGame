@@ -34,6 +34,7 @@ import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Finestra extends JFrame {
 
@@ -50,6 +51,7 @@ public class Finestra extends JFrame {
 	
 	private Giocatore giocatore;
 	private JLabel lblInAttesaDella;
+	private JButton btnMute;
 
 	/**
 	 * Create the frame.
@@ -67,7 +69,7 @@ public class Finestra extends JFrame {
 		
 		scrollPane_mano = new JScrollPane();
 		scrollPane_mano.setBorder(null);
-		scrollPane_mano.setBounds(6, 287, 776, 137);
+		scrollPane_mano.setBounds(6, 287, 776, 150);
 		scrollPane_mano.setOpaque(false);
 		scrollPane_mano.getViewport().setOpaque(false);
 		
@@ -79,6 +81,20 @@ public class Finestra extends JFrame {
 		lblInAttesaDella.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInAttesaDella.setBounds(0, 0, 788, 453);
 		lblInAttesaDella.setVisible(false);
+		
+		btnMute = new JButton("");
+		btnMute.setForeground(Color.GRAY);
+		btnMute.setBackground(new Color(0,0,0,100));
+		btnMute.setBorderPainted(false);
+		btnMute.setOpaque(true);
+		btnMute.setIcon(new ImageIcon(Finestra.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaMute.png")));
+		btnMute.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Controller.toggleAudio();
+			}
+		});
+		btnMute.setBounds(22, 206, 41, 41);
+		contentPane.add(btnMute);
 		contentPane.add(lblInAttesaDella);
 		
 		mazzo = new Card();
@@ -106,7 +122,7 @@ public class Finestra extends JFrame {
 		scrollPane_mano_avv.setBorder(null);
 		scrollPane_mano_avv.setOpaque(false);
 		scrollPane_mano_avv.getViewport().setOpaque(false);
-		scrollPane_mano_avv.setBounds(6, 26, 776, 137);
+		scrollPane_mano_avv.setBounds(6, 5, 776, 150);
 		contentPane.add(scrollPane_mano_avv);
 		
 		panel_mano_avv = new JPanel();
@@ -128,7 +144,7 @@ public class Finestra extends JFrame {
 		contentPane.add(sfondoCarta);
 		
 		card = new Card();
-		card.setBounds(354, 169, 87, 106);
+		card.setBounds(354, 169, 73, 106);
 		contentPane.add(card);
 		
 		try {
@@ -186,5 +202,8 @@ public class Finestra extends JFrame {
 	public JButton getBtnUno() {
 		return btnUno;
 	}
-
+	
+	public JButton getBtnMute() {
+		return this.btnMute;
+	}
 }

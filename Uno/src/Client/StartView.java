@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Server.ServerView;
 import Utility.MotionPanel;
 
 import javax.swing.JLabel;
@@ -40,15 +41,6 @@ public class StartView extends JFrame {
 	private JButton btnNewButton_1;
 	private JButton btnX;
 	private JFrame that = this;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		StartView frame = new StartView();
-		frame.setVisible(true);
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -144,6 +136,7 @@ public class StartView extends JFrame {
 			
 			setUndecorated(true);
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		//this.setUndecorated(true);

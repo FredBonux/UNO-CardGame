@@ -2,6 +2,7 @@ package Client;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import Carte.Carta;
@@ -9,14 +10,17 @@ import Carte.Carta;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class Card extends JLabel implements MouseListener{
+public class Card extends JButton implements ActionListener{
 	/**
 	 * 
 	 */
@@ -33,16 +37,22 @@ public class Card extends JLabel implements MouseListener{
 	
 	public Card(Carta c) {
 		super("");
+		setMargin(new Insets(-4,-4,-4,-4));
+		setBorder(null);
+		setBorderPainted(false);
 		try {
 			this.carta = c;
 			this.updateImage();
-			this.addMouseListener(this);
+			this.addActionListener(this);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public Card() {
+		setMargin(new Insets(0,-4,0,-4));
+		setBorder(null);
+		setBorderPainted(false);
 		try {
 			this.updateRetro();
 		} catch(Exception e) {
@@ -91,38 +101,6 @@ public class Card extends JLabel implements MouseListener{
 
 	    return output;
 	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-
-		Controller.giocaCarta(this);
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	public Carta getCarta () {
 		return carta;
 	}
@@ -138,5 +116,12 @@ public class Card extends JLabel implements MouseListener{
 	
 	public static void loadSources() {
 		source = loadSource();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(Controller.isMyTurn() == false) return;
+ 		Controller.giocaCarta(this);
+		
 	}
 }

@@ -14,6 +14,7 @@ import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import Carte.Mano;
@@ -28,6 +29,8 @@ public class Partita extends Thread {
 	private Finestra f;
 	private GameReadThread grt;
 	private Clip mainClip;
+	private boolean audio = true;
+	public boolean isMyTurn = false;
 	
 	public Partita(Socket connection) throws IOException, ClassNotFoundException {
 		System.out.println("Carico le risorse");
@@ -113,22 +116,7 @@ public class Partita extends Thread {
 	}
 
 	public void subisci(Packet p) {
-		try {
-	         // Open an audio input stream.           
-	          File soundFile = new File("./snd/carta.wav"); //you could also get the sound file with an URL
-	          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
-	         // Get a sound clip resource.
-	         Clip clip = AudioSystem.getClip();
-	         // Open audio clip and load samples from the audio input stream.
-	         clip.open(audioIn);
-	         clip.start();
-	      } catch (UnsupportedAudioFileException e) {
-	         e.printStackTrace();
-	      } catch (IOException e) {
-	         e.printStackTrace();
-	      } catch (LineUnavailableException e) {
-	         e.printStackTrace();
-	      }
+		this.cartaAudio();
 		Controller.setCartaTavolo(p.getCartaSubita());
 		Controller.avversarioGioca();
 		switch (p.getCartaSubita().getTipoCarta()) {
@@ -163,31 +151,19 @@ public class Partita extends Thread {
 	}
 	
 	public void otherPesca() {
-		try {
-	         // Open an audio input stream.           
-	          File soundFile = new File("./snd/carta.wav"); //you could also get the sound file with an URL
-	          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
-	         // Get a sound clip resource.
-	         Clip clip = AudioSystem.getClip();
-	         // Open audio clip and load samples from the audio input stream.
-	         clip.open(audioIn);
-	         clip.start();
-	      } catch (UnsupportedAudioFileException e) {
-	         e.printStackTrace();
-	      } catch (IOException e) {
-	         e.printStackTrace();
-	      } catch (LineUnavailableException e) {
-	         e.printStackTrace();
-	      }
+		this.cartaAudio();
 		Controller.avversarioPesca();
 	}
 	
 	public void otherTurn() {
+		this.isMyTurn = false;
 		f.getInAttesaLbl().setVisible(true);
-		f.setEnabled(false);
+		f.getPanel_mano().setEnabled(false);
+		//f.setEnabled(false);
 	}
 	
 	public void myTurn() {
+		this.isMyTurn = true;
 		f.getInAttesaLbl().setVisible(false);
 		f.setEnabled(true);
 	}
@@ -195,7 +171,8 @@ public class Partita extends Thread {
 	
 	public void disableView() {
 		f.getInAttesaLbl().setVisible(true);
-		f.setEnabled(false);
+		f.getPanel_mano().setEnabled(false);
+		//f.setEnabled(false);
 	}
 	
 	public InputReadBuffered getIrb() {
@@ -220,4 +197,56 @@ public class Partita extends Thread {
 	         e.printStackTrace();
 	      }	
 	}
+	
+	public void toggleAudio() {
+		if(this.audio) {
+			mainClip.stop();
+			this.audio = false;
+			this.f.getBtnMute().setIcon(new ImageIcon(Finestra.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaUnmute.png")));
+		}else {
+	        mainClip.loop(Clip.LOOP_CONTINUOUSLY);
+			this.audio = true;
+			this.f.getBtnMute().setIcon(new ImageIcon(Finestra.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaMute.png")));
+		}
+	}
+	public void cartaAudio() {
+		if(this.audio == false) return;
+		try {
+	         // Open an audio input stream.           
+	          File soundFile = new File("./snd/carta.wav"); //you could also get the sound file with an URL
+	          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
+	         // Get a sound clip resource.
+	         Clip clip = AudioSystem.getClip();
+	         // Open audio clip and load samples from the audio input stream.
+	         clip.open(audioIn);
+	         clip.start();
+	      } catch (UnsupportedAudioFileException e) {
+	         e.printStackTrace();
+	      } catch (IOException e) {
+	         e.printStackTrace();
+	      } catch (LineUnavailableException e) {
+	         e.printStackTrace();
+	      }
+	}
+	public void playUnoSound() {
+		if(!this.audio) return;
+		try {
+	         // Open an audio input stream.           
+	          File soundFile = new File("./snd/Uno.wav"); //you could also get the sound file with an URL
+	          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
+	         // Get a sound clip resource.
+	         Clip clip = AudioSystem.getClip();
+	         // Open audio clip and load samples from the audio input stream.
+	         clip.open(audioIn);
+	         clip.start();
+	      } catch (UnsupportedAudioFileException e) {
+	         e.printStackTrace();
+	      } catch (IOException e) {
+	         e.printStackTrace();
+	      } catch (LineUnavailableException e) {
+	         e.printStackTrace();
+	      }
+	}
 }
+
+

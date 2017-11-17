@@ -56,22 +56,7 @@ public class Controller{
 				setCartaTavolo(c.getCarta());
 				
 				//partita.disableView();
-				try {
-			         // Open an audio input stream.           
-			          File soundFile = new File("./snd/carta.wav"); //you could also get the sound file with an URL
-			          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
-			         // Get a sound clip resource.
-			         Clip clip = AudioSystem.getClip();
-			         // Open audio clip and load samples from the audio input stream.
-			         clip.open(audioIn);
-			         clip.start();
-			      } catch (UnsupportedAudioFileException e) {
-			         e.printStackTrace();
-			      } catch (IOException e) {
-			         e.printStackTrace();
-			      } catch (LineUnavailableException e) {
-			         e.printStackTrace();
-			      }
+				partita.cartaAudio();
 			}else {
 				JOptionPane.showMessageDialog(fin,"SERVER: Questa carta non puo' essere giocata!");
 			}
@@ -79,22 +64,7 @@ public class Controller{
 			if(giocaNonSpeciale(c)) {
 				int b=giocatore.getMano().getMano().size();
 				System.out.println("ddddd"+b);
-				try {
-			         // Open an audio input stream.           
-			          File soundFile = new File("./snd/carta.wav"); //you could also get the sound file with an URL
-			          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
-			         // Get a sound clip resource.
-			         Clip clip = AudioSystem.getClip();
-			         // Open audio clip and load samples from the audio input stream.
-			         clip.open(audioIn);
-			         clip.start();
-			      } catch (UnsupportedAudioFileException e) {
-			         e.printStackTrace();
-			      } catch (IOException e) {
-			         e.printStackTrace();
-			      } catch (LineUnavailableException e) {
-			         e.printStackTrace();
-			      }
+				partita.cartaAudio();
 				if(TipoCarta.Piu2 == c.getCarta().getTipoCarta()) 
 					for(int i = 0; i < 2; i++) avversarioPesca();
 				cleanSfondoCarta();
@@ -244,44 +214,22 @@ public class Controller{
 			if(lastCheck) {
 				
 			}
-			try {
-		         // Open an audio input stream.           
-		          File soundFile = new File("./snd/carta.wav"); //you could also get the sound file with an URL
-		          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
-		         // Get a sound clip resource.
-		         Clip clip = AudioSystem.getClip();
-		         // Open audio clip and load samples from the audio input stream.
-		         clip.open(audioIn);
-		         clip.start();
-		      } catch (UnsupportedAudioFileException e) {
-		         e.printStackTrace();
-		      } catch (IOException e) {
-		         e.printStackTrace();
-		      } catch (LineUnavailableException e) {
-		         e.printStackTrace();
-		      }
+			partita.cartaAudio();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	private static void playUnoSound() {
-		try {
-	         // Open an audio input stream.           
-	          File soundFile = new File("./snd/Uno.wav"); //you could also get the sound file with an URL
-	          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
-	         // Get a sound clip resource.
-	         Clip clip = AudioSystem.getClip();
-	         // Open audio clip and load samples from the audio input stream.
-	         clip.open(audioIn);
-	         clip.start();
-	      } catch (UnsupportedAudioFileException e) {
-	         e.printStackTrace();
-	      } catch (IOException e) {
-	         e.printStackTrace();
-	      } catch (LineUnavailableException e) {
-	         e.printStackTrace();
-	      }
+		partita.playUnoSound();
+	}
+	
+	public static void toggleAudio() {
+		partita.toggleAudio();
+	}
+	
+	public static boolean isMyTurn() {
+		return partita.isMyTurn;
 	}
 	
 }
