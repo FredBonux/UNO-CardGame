@@ -23,6 +23,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.Frame;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -40,6 +42,8 @@ public class StartView extends JFrame {
 	private JButton btnNewButton_1;
 	private JButton btnX;
 	private JFrame that = this;
+	private JButton btnNewButton_2;
+	
 
 	/**
 	 * Launch the application.
@@ -134,6 +138,14 @@ public class StartView extends JFrame {
 			panel.setBounds(0, 0, 450, 278);
 			contentPane.add(panel);
 			panel.setLayout(null);
+			btnNewButton_2 = new JButton("TUTORIAL");
+			btnNewButton_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Regole r = new Regole(getFrame());
+				}
+			});
+			btnNewButton_2.setBounds(337, 195, 103, 61);
+			panel.add(btnNewButton_2);
 			
 			logoBg = new JLabel("");
 			logoBg.setHorizontalAlignment(SwingConstants.CENTER);
@@ -147,5 +159,10 @@ public class StartView extends JFrame {
 		}
 		
 		//this.setUndecorated(true);
+	}
+	
+	public StartView getFrame(){
+		
+		return this;
 	}
 }
