@@ -98,10 +98,11 @@ public class Finestra extends JFrame {
 		contentPane.add(lblInAttesaDella);
 		
 		mazzo = new Card();
-		mazzo.addMouseListener(new MouseAdapter() {
+		mazzo.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				Controller.pesca();
+			public void actionPerformed(ActionEvent e) {
+				if(Controller.isMyTurn())
+					Controller.pesca();
 			}
 		});
 		mazzo.setBounds(564, 169, 87, 106);

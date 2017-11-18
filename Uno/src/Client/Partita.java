@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import Carte.Mano;
+import Main.Client;
 import Utility.Evento;
 import Utility.Giocatore;
 import Utility.InputReadBuffered;
@@ -112,7 +113,9 @@ public class Partita extends Thread {
 		//Mostro la vittoria
 		new WinDialog();
 		f.dispose();
-		System.exit(0);
+		audio = false;
+		mainClip.stop();
+		Client.reload();
 	}
 
 	public void subisci(Packet p) {
@@ -146,8 +149,10 @@ public class Partita extends Thread {
 		giocatore.getIrb().hasError = true;
 		//Mostro la vittoria
 		new LoseDialog();
-		f.dispose();
-		System.exit(0);
+		f.dispose(); 
+		audio = false;
+		mainClip.stop();
+		Client.reload();
 	}
 	
 	public void otherPesca() {

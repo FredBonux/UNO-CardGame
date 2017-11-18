@@ -7,6 +7,10 @@ import Client.StartView;
 public class Client {
 
 	public static void main(String[] args) {
+		reload();
+	}
+	
+	public static void reload() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
