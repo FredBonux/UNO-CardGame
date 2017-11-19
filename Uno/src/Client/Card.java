@@ -37,9 +37,13 @@ public class Card extends JButton implements ActionListener{
 	
 	public Card(Carta c) {
 		super("");
+	    setContentAreaFilled(false); 
+	    setFocusPainted(false); 
+	    setOpaque(false);
 		setMargin(new Insets(-4,-4,-4,-4));
 		setBorder(null);
 		setBorderPainted(false);
+		setBackground(new Color(0, 0, 0, 0));
 		try {
 			this.carta = c;
 			this.updateImage();
@@ -50,9 +54,13 @@ public class Card extends JButton implements ActionListener{
 	}
 	
 	public Card() {
-		setMargin(new Insets(0,-4,0,-4));
+		setContentAreaFilled(false); 
+		setFocusPainted(false); 
+	    setOpaque(false);
+		setMargin(new Insets(-4,-4,-4,-4));
 		setBorder(null);
 		setBorderPainted(false);
+		setBackground(new Color(0, 0, 0, 0));
 		try {
 			this.updateRetro();
 		} catch(Exception e) {

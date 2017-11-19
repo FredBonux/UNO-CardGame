@@ -140,6 +140,9 @@ public class Partita extends Thread {
 			f.getPanel_mano().add(new Card(p.getCarte().get(3)));
 			break;
 		}
+		
+		f.revalidate();
+		f.repaint();
 	}
 	
 	public void defeat() {

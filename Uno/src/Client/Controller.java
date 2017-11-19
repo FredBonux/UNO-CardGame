@@ -209,6 +209,8 @@ public class Controller{
 			Carta c = p.getCarte().get(i);
 			giocatore.getMano().aggiungiCarta(c);
 			fin.getPanel_mano().add(new Card(c));
+			fin.revalidate();
+			fin.repaint();
 		}
 		Controller.hasPenality = true;
 	}
@@ -220,6 +222,8 @@ public class Controller{
 			Carta pescata = lastPacket.getCartaSubita();
 			giocatore.getMano().aggiungiCarta(pescata);
 			fin.getPanel_mano().add(new Card(pescata));
+			fin.revalidate();
+			fin.repaint();
 			if(giocatore.getMano().getMano().size()!=2){
 				unoCalled = false;
 				fin.getBtnUno().setEnabled(false);
