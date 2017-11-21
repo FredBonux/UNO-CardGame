@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.Socket;
@@ -29,7 +30,6 @@ import java.awt.Frame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 public class StartView extends JFrame {
 
 	private JPanel contentPane;
@@ -48,6 +48,8 @@ public class StartView extends JFrame {
 	 * Create the frame.
 	 */
 	public StartView() {
+		Image image = Toolkit.getDefaultToolkit().getImage("/Users/federicobono/Downloads/unoLogo.png");
+		setIconImage(image);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 277);

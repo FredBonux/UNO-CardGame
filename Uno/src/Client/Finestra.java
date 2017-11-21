@@ -36,6 +36,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Toolkit;
 
 public class Finestra extends JFrame {
 
@@ -58,6 +59,7 @@ public class Finestra extends JFrame {
 	 * Create the frame.
 	 */
 	public Finestra() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("/Users/federicobono/Downloads/unoLogo.png"));
 		setBackground(new Color(153, 0, 0));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
