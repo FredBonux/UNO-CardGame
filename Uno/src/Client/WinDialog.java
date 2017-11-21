@@ -1,6 +1,7 @@
 package Client;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,7 +26,7 @@ public class WinDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public WinDialog() {
+	public WinDialog(Component c) {
 		ImageIcon gifImage = null;
 		JLabel yourLabel = null;
 		setResizable(false);
@@ -50,7 +51,9 @@ public class WinDialog extends JDialog {
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		setBounds(100, 100, gifImage.getIconWidth(), gifImage.getIconHeight());
+		int x = c.getX() + c.getWidth()/2 - (gifImage.getIconWidth()/2);
+		int y = c.getY() + c.getHeight()/2 - (gifImage.getIconHeight()/2);
+		setBounds(x, y, gifImage.getIconWidth(), gifImage.getIconHeight());
 		contentPanel.add(gif, BorderLayout.CENTER);
 		setVisible(true);	
 		

@@ -21,12 +21,10 @@ public class InputReadBuffered extends Thread{
 		while(!hasError) {
 			try {
 				Packet p = (Packet) ois.readObject();
-				System.out.println("ARRIVATO : " + p + " -> " + p.getEvento());
 				buffer.add(p);
 				semaforo.release();
 			} catch (Exception e) {
 				hasError = true;
-				System.out.println("DISCONNESSO");
 			}
 		}
 	}

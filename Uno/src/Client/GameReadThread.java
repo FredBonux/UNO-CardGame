@@ -21,7 +21,6 @@ public class GameReadThread extends Thread{
 		while(isGameOn) {
 			try {
 				Packet p = irb.pop();
-				System.out.println("CHIAMATO: " + p);
 				if(p != null) {
 					switch (p.getEvento()) {
 					case turno:

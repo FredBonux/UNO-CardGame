@@ -25,6 +25,7 @@ import marvin.util.MarvinPluginLoader;
 import static marvin.MarvinPluginCollection.*;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
@@ -157,6 +158,9 @@ public class Finestra extends JFrame {
 			btnUno.setEnabled(false);
 			btnUno.setForeground(Color.BLACK);
 			btnUno.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 38));
+			btnUno.setContentAreaFilled(false); 
+		    btnUno.setFocusPainted(false);
+			//setBackground(new Color(0, 0, 0, 0));
 			btnUno.setBounds(137, 174, 157, 101);
 			contentPane.add(btnUno);
 			sfondo.setIcon(new ImageIcon(bgResized));

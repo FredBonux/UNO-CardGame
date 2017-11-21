@@ -111,7 +111,7 @@ public class Partita extends Thread {
 		grt.isGameOn = false; 
 		giocatore.getIrb().hasError = true;
 		//Mostro la vittoria
-		new WinDialog();
+		new WinDialog(f);
 		f.dispose();
 		audio = false;
 		mainClip.stop();
@@ -151,7 +151,7 @@ public class Partita extends Thread {
 		grt.isGameOn = false; 
 		giocatore.getIrb().hasError = true;
 		//Mostro la vittoria
-		new LoseDialog();
+		new LoseDialog(f);
 		f.dispose(); 
 		audio = false;
 		mainClip.stop();
