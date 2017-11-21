@@ -48,8 +48,7 @@ public class StartView extends JFrame {
 	 * Create the frame.
 	 */
 	public StartView() {
-		Image image = Toolkit.getDefaultToolkit().getImage("/Users/federicobono/Downloads/unoLogo.png");
-		setIconImage(image);
+		setIconImage(Toolkit.getDefaultToolkit().getImage("./UnoLogo.png"));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 277);
@@ -124,7 +123,7 @@ public class StartView extends JFrame {
 					System.exit(0);
 				}
 			});
-			btnX.setBounds(418, 0, 32, 34);
+			btnX.setBounds(410, 0, 40, 34);
 			contentPane.add(btnX);
 			panel = new JPanel();
 			panel.setBackground(c);

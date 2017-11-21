@@ -59,7 +59,7 @@ public class Finestra extends JFrame {
 	 * Create the frame.
 	 */
 	public Finestra() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("/Users/federicobono/Downloads/unoLogo.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("./UnoLogo.png"));
 		setBackground(new Color(153, 0, 0));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
