@@ -48,7 +48,7 @@ public class StartView extends JFrame {
 	 * Create the frame.
 	 */
 	public StartView() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("./UnoLogo.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("img/UnoLogo.png"));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 277);
